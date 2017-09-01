@@ -49,7 +49,20 @@
 		82E97D1B84B843BDAA49B980 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D56D852F051483793B3E8ED /* Octicons.ttf */; };
 		34A102F56A9640CBB334C526 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D80F17283041491BBDA5C307 /* SimpleLineIcons.ttf */; };
 		59DA0DD473934AD4A991E222 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2AD38E1B6BA4D0F8391FE96 /* Zocial.ttf */; };
-		ED2D5B7F3E98459FA5C78BF9 /* libRCTVideo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C9004FD627642E2A3563551 /* libRCTVideo.a */; };
+		092FB7FD0263451D8C27FD6E /* libRCTJPushModule.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FBEC75223914730887F02D7 /* libRCTJPushModule.a */; };
+		D4D2B93E76424689AD5EF33A /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AAAF35DC5E804CA5A0D0B525 /* libz.tbd */; };
+		DB565D7BA71A40CBA4319B9B /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F13155294F244263A443CFF3 /* UserNotifications.framework */; };
+		89C7B3A544A8431A94EE8A52 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC4EA007E1404ECD97E33E3A /* CoreTelephony.framework */; };
+		DC312675482E41B7BA4539AB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5C2991EC9A44E3EB0F9D61C /* Security.framework */; };
+		FFF3D48ADA854766852C3C6B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8ACEACA9884A34B6C18298 /* CFNetwork.framework */; };
+		EC9AB5B58B5E4650AF0B569A /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB61582CA5E44B9991058B3E /* CoreFoundation.framework */; };
+		5D111691FBC243E3917AB7D4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C6C960E4098432AB1571002 /* SystemConfiguration.framework */; };
+		04FA777898B14F8ABB815FA7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8E64DCFD9124EE9AA6F1692 /* Foundation.framework */; };
+		456C9BF289674630A90F4C36 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 831137CBB5C249CEAD8C29DE /* UIKit.framework */; };
+		4585669811BE49519526C3E7 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BBF937A56FA5442BA7C81A96 /* libresolv.tbd */; };
+		0D16D35DF82641318910012A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE769FA34EF74E478EB3F56A /* CoreGraphics.framework */; };
+		27A7347BE04046888FB40C81 /* libRCTVideo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FB8099375A7A4371A08EE1EA /* libRCTVideo.a */; };
+		209452B5EA2A47EFB75D9C9D /* libRCTJCoreModule.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD54E5038C4745D297F9A69D /* libRCTJCoreModule.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -285,8 +298,23 @@
 		3D56D852F051483793B3E8ED /* Octicons.ttf */ = {isa = PBXFileReference; name = "Octicons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		D80F17283041491BBDA5C307 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; name = "SimpleLineIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		B2AD38E1B6BA4D0F8391FE96 /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		5A5144DD2A94486FBBF97E9C /* RCTVideo.xcodeproj */ = {isa = PBXFileReference; name = "RCTVideo.xcodeproj"; path = "../node_modules/react-native-video/ios/RCTVideo.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		2C9004FD627642E2A3563551 /* libRCTVideo.a */ = {isa = PBXFileReference; name = "libRCTVideo.a"; path = "libRCTVideo.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		888F6A0D12FF43E1A6052A89 /* RCTJPushModule.xcodeproj */ = {isa = PBXFileReference; name = "RCTJPushModule.xcodeproj"; path = "../node_modules/jpush-react-native/ios/RCTJPushModule.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		2FBEC75223914730887F02D7 /* libRCTJPushModule.a */ = {isa = PBXFileReference; name = "libRCTJPushModule.a"; path = "libRCTJPushModule.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		AAAF35DC5E804CA5A0D0B525 /* libz.tbd */ = {isa = PBXFileReference; name = "libz.tbd"; path = "usr/lib/libz.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
+		F13155294F244263A443CFF3 /* UserNotifications.framework */ = {isa = PBXFileReference; name = "UserNotifications.framework"; path = "System/Library/Frameworks/UserNotifications.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		AC4EA007E1404ECD97E33E3A /* CoreTelephony.framework */ = {isa = PBXFileReference; name = "CoreTelephony.framework"; path = "System/Library/Frameworks/CoreTelephony.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		C5C2991EC9A44E3EB0F9D61C /* Security.framework */ = {isa = PBXFileReference; name = "Security.framework"; path = "System/Library/Frameworks/Security.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		9A8ACEACA9884A34B6C18298 /* CFNetwork.framework */ = {isa = PBXFileReference; name = "CFNetwork.framework"; path = "System/Library/Frameworks/CFNetwork.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		BB61582CA5E44B9991058B3E /* CoreFoundation.framework */ = {isa = PBXFileReference; name = "CoreFoundation.framework"; path = "System/Library/Frameworks/CoreFoundation.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		1C6C960E4098432AB1571002 /* SystemConfiguration.framework */ = {isa = PBXFileReference; name = "SystemConfiguration.framework"; path = "System/Library/Frameworks/SystemConfiguration.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		B8E64DCFD9124EE9AA6F1692 /* Foundation.framework */ = {isa = PBXFileReference; name = "Foundation.framework"; path = "System/Library/Frameworks/Foundation.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		831137CBB5C249CEAD8C29DE /* UIKit.framework */ = {isa = PBXFileReference; name = "UIKit.framework"; path = "System/Library/Frameworks/UIKit.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		BBF937A56FA5442BA7C81A96 /* libresolv.tbd */ = {isa = PBXFileReference; name = "libresolv.tbd"; path = "usr/lib/libresolv.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
+		BE769FA34EF74E478EB3F56A /* CoreGraphics.framework */ = {isa = PBXFileReference; name = "CoreGraphics.framework"; path = "System/Library/Frameworks/CoreGraphics.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		8802F71A38024413B1C70B4F /* RCTVideo.xcodeproj */ = {isa = PBXFileReference; name = "RCTVideo.xcodeproj"; path = "../node_modules/react-native-video/ios/RCTVideo.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		FB8099375A7A4371A08EE1EA /* libRCTVideo.a */ = {isa = PBXFileReference; name = "libRCTVideo.a"; path = "libRCTVideo.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		6D927C21A62D473B951AF2CC /* RCTJCoreModule.xcodeproj */ = {isa = PBXFileReference; name = "RCTJCoreModule.xcodeproj"; path = "../node_modules/jcore-react-native/ios/RCTJCoreModule.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		FD54E5038C4745D297F9A69D /* libRCTJCoreModule.a */ = {isa = PBXFileReference; name = "libRCTJCoreModule.a"; path = "libRCTJCoreModule.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -315,7 +343,20 @@
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				54D424FA49174417A8165A33 /* libRCTBEEPickerManager.a in Frameworks */,
 				6AEE9E9144034B6F9DE13617 /* libRNVectorIcons.a in Frameworks */,
-				ED2D5B7F3E98459FA5C78BF9 /* libRCTVideo.a in Frameworks */,
+				092FB7FD0263451D8C27FD6E /* libRCTJPushModule.a in Frameworks */,
+				D4D2B93E76424689AD5EF33A /* libz.tbd in Frameworks */,
+				DB565D7BA71A40CBA4319B9B /* UserNotifications.framework in Frameworks */,
+				89C7B3A544A8431A94EE8A52 /* CoreTelephony.framework in Frameworks */,
+				DC312675482E41B7BA4539AB /* Security.framework in Frameworks */,
+				FFF3D48ADA854766852C3C6B /* CFNetwork.framework in Frameworks */,
+				EC9AB5B58B5E4650AF0B569A /* CoreFoundation.framework in Frameworks */,
+				5D111691FBC243E3917AB7D4 /* SystemConfiguration.framework in Frameworks */,
+				04FA777898B14F8ABB815FA7 /* Foundation.framework in Frameworks */,
+				456C9BF289674630A90F4C36 /* UIKit.framework in Frameworks */,
+				4585669811BE49519526C3E7 /* libresolv.tbd in Frameworks */,
+				0D16D35DF82641318910012A /* CoreGraphics.framework in Frameworks */,
+				27A7347BE04046888FB40C81 /* libRCTVideo.a in Frameworks */,
+				209452B5EA2A47EFB75D9C9D /* libRCTJCoreModule.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,7 +525,9 @@
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				B8F1B99A95404E7C9DA7B9F6 /* RCTBEEPickerManager.xcodeproj */,
 				D0DE7EA5278547DB8B0FFCF8 /* RNVectorIcons.xcodeproj */,
-				5A5144DD2A94486FBBF97E9C /* RCTVideo.xcodeproj */,
+				888F6A0D12FF43E1A6052A89 /* RCTJPushModule.xcodeproj */,
+				8802F71A38024413B1C70B4F /* RCTVideo.xcodeproj */,
+				6D927C21A62D473B951AF2CC /* RCTJCoreModule.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -506,6 +549,7 @@
 				00E356EF1AD99517003FC87E /* nywlwTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				CA20759B923C4A8383E9B446 /* Resources */,
+				E002157B1754430694E9C42A /* Frameworks */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -539,6 +583,25 @@
 				B2AD38E1B6BA4D0F8391FE96 /* Zocial.ttf */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+			path = "";
+		};
+		E002157B1754430694E9C42A /* Frameworks */ = {
+			isa = "PBXGroup";
+			children = (
+				AAAF35DC5E804CA5A0D0B525 /* libz.tbd */,
+				F13155294F244263A443CFF3 /* UserNotifications.framework */,
+				AC4EA007E1404ECD97E33E3A /* CoreTelephony.framework */,
+				C5C2991EC9A44E3EB0F9D61C /* Security.framework */,
+				9A8ACEACA9884A34B6C18298 /* CFNetwork.framework */,
+				BB61582CA5E44B9991058B3E /* CoreFoundation.framework */,
+				1C6C960E4098432AB1571002 /* SystemConfiguration.framework */,
+				B8E64DCFD9124EE9AA6F1692 /* Foundation.framework */,
+				831137CBB5C249CEAD8C29DE /* UIKit.framework */,
+				BBF937A56FA5442BA7C81A96 /* libresolv.tbd */,
+				BE769FA34EF74E478EB3F56A /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 			path = "";
 		};
@@ -1046,12 +1109,15 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-picker\ios\RCTBEEPickerManager",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
+					"$(SRCROOT)\..\node_modules\jpush-react-native\ios\RCTJPushModule",
 					"$(SRCROOT)\..\node_modules\react-native-video\ios",
+					"$(SRCROOT)\..\node_modules\jcore-react-native\ios\RCTJCoreModule",
 				);
 			};
 			name = Debug;
@@ -1073,12 +1139,15 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-picker\ios\RCTBEEPickerManager",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
+					"$(SRCROOT)\..\node_modules\jpush-react-native\ios\RCTJPushModule",
 					"$(SRCROOT)\..\node_modules\react-native-video\ios",
+					"$(SRCROOT)\..\node_modules\jcore-react-native\ios\RCTJCoreModule",
 				);
 			};
 			name = Release;
@@ -1102,7 +1171,9 @@
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-picker\ios\RCTBEEPickerManager",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
+					"$(SRCROOT)\..\node_modules\jpush-react-native\ios\RCTJPushModule",
 					"$(SRCROOT)\..\node_modules\react-native-video\ios",
+					"$(SRCROOT)\..\node_modules\jcore-react-native\ios\RCTJCoreModule",
 				);
 			};
 			name = Debug;
@@ -1125,7 +1196,9 @@
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-picker\ios\RCTBEEPickerManager",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
+					"$(SRCROOT)\..\node_modules\jpush-react-native\ios\RCTJPushModule",
 					"$(SRCROOT)\..\node_modules\react-native-video\ios",
+					"$(SRCROOT)\..\node_modules\jcore-react-native\ios\RCTJCoreModule",
 				);
 			};
 			name = Release;
@@ -1156,12 +1229,15 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-picker\ios\RCTBEEPickerManager",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
+					"$(SRCROOT)\..\node_modules\jpush-react-native\ios\RCTJPushModule",
 					"$(SRCROOT)\..\node_modules\react-native-video\ios",
+					"$(SRCROOT)\..\node_modules\jcore-react-native\ios\RCTJCoreModule",
 				);
 			};
 			name = Debug;
@@ -1192,12 +1268,15 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-picker\ios\RCTBEEPickerManager",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
+					"$(SRCROOT)\..\node_modules\jpush-react-native\ios\RCTJPushModule",
 					"$(SRCROOT)\..\node_modules\react-native-video\ios",
+					"$(SRCROOT)\..\node_modules\jcore-react-native\ios\RCTJCoreModule",
 				);
 			};
 			name = Release;
@@ -1223,6 +1302,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Debug;
@@ -1247,6 +1327,7 @@
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};

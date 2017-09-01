@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+    DeviceEventEmitter,
     StyleSheet,
     View,
     Text,
@@ -16,7 +17,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        height:45,
+        height: 45,
         backgroundColor: theme.theme
     },
     msgIcon: {
@@ -44,13 +45,17 @@ export default class Header extends Component {
         super(props);
     }
     msgButtonAction() {
-        const {navigation}=this.props;
-        console.info(navigation)
+        const {navigation} = this.props;
+        // console.info(navigation)
         InteractionManager.runAfterInteractions(() => {
-            navigation.navigate('Msg',{title:'我的消息'})
+            navigation.navigate('Msg', { title: '我的消息' })
         })
     }
     componentDidMount() {
+
+    }
+    componentWillUnmount(){
+        this.pushListener && this.pushListener.remove()    
     }
     render() {
         return (
@@ -60,7 +65,7 @@ export default class Header extends Component {
                     <View style={styles.topBarCenter}>
                         <Text style={styles.topBarCenterTitle}>{this.props.title}</Text>
                     </View>
-                    <TouchableOpacity style={styles.topBarRight} onPress={() =>this.msgButtonAction()}>
+                    <TouchableOpacity style={styles.topBarRight} onPress={() => /*this.msgButtonAction()*/{}}>
                         <Icon style={styles.icon} name='commenting' size={18} color="#fff"></Icon>
                     </TouchableOpacity>
                 </View>

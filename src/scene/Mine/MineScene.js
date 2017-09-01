@@ -106,7 +106,7 @@ class MineScene extends Component {
                     </TouchableOpacity>
                 </View>
                 <View style={[rowStyle.mineWrapper, styles.marginBottom]}>
-                    <TouchableOpacity onPress={() => this.props.navigation.navigate('Msg', { title: '我的信息' })}>
+                    <TouchableOpacity onPress={() => /*this.props.navigation.navigate('Msg', { title: '我的信息' })*/{}}>
                         <View style={rowStyle.myItem}>
                             <View style={rowStyle.myItemLeft}>
                                 <Icon style={rowStyle.tipIcon} name='comment-o' size={18} color={theme.theme}></Icon>
@@ -119,7 +119,7 @@ class MineScene extends Component {
                             </View>
                         </View>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => this.props.navigation.navigate('Myprofit', { title: '我的收益' })}>
+                    <TouchableOpacity onPress={() => /*this.props.navigation.navigate('Myprofit', { title: '我的收益' })*/{}}>
                         <View style={[rowStyle.myItem, rowStyle.noBorerBottom]}>
                             <View style={rowStyle.myItemLeft}>
                                 <IconFont style={rowStyle.tipIcon} name='shouyi' size={18} color={theme.theme}></IconFont>

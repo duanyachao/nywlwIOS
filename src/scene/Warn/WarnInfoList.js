@@ -1,6 +1,7 @@
 //import liraries
 import React, { Component } from 'react';
 import {
+    DeviceEventEmitter,
     Image,
     ListView,
     View,
@@ -12,6 +13,7 @@ import { Network, toastShort } from '../../utils';
 import api from '../../api';
 import { ParamsIcon } from '../../common/Normal';
 import { theme, screen } from '../../common';
+
 // create a component
 export default class WarnInfoList extends Component {
     constructor(props) {
@@ -20,34 +22,56 @@ export default class WarnInfoList extends Component {
             warnInfo: null
         }
     }
-    requestWarnData(){
-        const {deviceIds, orgId, token, callbackisWarn} = this.props;
-        let params = {
-            deviceIds: deviceIds,
-            orgId: orgId
-        }
-        if (deviceIds) {
-            let headers = {
-                'Content-Type': 'application/json',
-                'X-Token': token
-            }
-            Network.postJson(api.HOST + api.WARNINFO, params, headers, (res) => {
-                if (res.meta.success) {
-                    // console.info(res.data)
-                    this.setState({
-                        warnInfo: res.data
-                    })
-                }else{
-                    console.info(res)
+    async requestWarnData() {
+        try {
+            const {areaData} = this.props;
+            let response  = await fetch(api.HOST + api.DEVICES+'?orgId='+areaData.id,{
+                method: 'GET',
+                headers:{
+                     'X-Token': token
                 }
             })
+            let responseJson = await response.json();
+            let deviceIds=[];
+            for (var index = 0; index < responseJson.data.length; index++) {
+                    deviceIds.push(responseJson.data[index].deviceId);
+            }
+            let params = {
+                deviceIds: deviceIds,
+                orgId: areaData.id
+            }
+            if (deviceIds) {
+                let headers = {
+                    'Content-Type': 'application/json',
+                    'X-Token': token
+                }
+                Network.postJson(api.HOST + api.WARNINFO, params, headers, (res) => {
+                    if (res.meta.success && res.data) {
+                        this.setState({
+                            warnInfo: res.data
+                        })
+                        
+                    } else {
+                        console.info(res)
+                    }
+                    DeviceEventEmitter.emit('报警状态',res);         
+                })
+            }
+        } catch (error) {
+            console.info(error)
         }
+
     }
     componentDidMount() {
-        this.requestWarnData()    
+        this.requestWarnData()
+        // this.timer = setInterval(() => { this.requestWarnData() }, 300000);
+        this.warnMsgListener=DeviceEventEmitter.addListener('receiveWarnMsg',(msg)=>{
+            this.requestWarnData()    
+        })
     }
-    componentWillReceiveProps(){
-        this.requestWarnData()    
+    componentWillUnmount() {
+        // this.timer && clearInterval(this.timer);
+        this.warnMsgListener.remove()
     }
     renderItem(item, i) {
         let warnColor, warnLevel;
@@ -119,7 +143,13 @@ export default class WarnInfoList extends Component {
         const {areaData} = this.props;
         if (warnInfo) {
             if (warnInfo.status == 2) {
-                return (<View style={styles.nodata}><Text>{warnInfo.result}</Text></View>)
+                return (<View style={styles.warnList}>
+                        <View style={styles.warnAreaTitle}>
+                            <Icon name='map-marker' size={18} color={theme.iconColor}></Icon>
+                            <Text style={styles.warnAreaTitleText}>{areaData.orgName}</Text>
+                        </View>
+                        <View style={styles.nodata}><Text>{warnInfo.result}</Text></View>
+                    </View>)
             } else if (warnInfo.status == 1) {
                 return (
                     <View style={styles.warnList}>
@@ -154,7 +184,7 @@ const styles = StyleSheet.create({
     warnAreaTitle: {
         flexDirection: 'row',
         padding: 8,
-        alignItems:'center'
+        alignItems: 'center'
     },
     warnAreaTitleText: {
         paddingLeft: 8,

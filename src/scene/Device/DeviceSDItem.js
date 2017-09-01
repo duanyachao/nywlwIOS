@@ -86,6 +86,7 @@ export default class DeviceItem extends Component{
     componentWillReceiveProps(nextProps){
         if(nextProps.rowData!==this.props.rowData){
             let status=nextProps.rowData.VALUE;
+            console.info(status)
             this.changeStatus(status); 
         }
         return true
@@ -97,7 +98,7 @@ export default class DeviceItem extends Component{
                 action="OFF";
                 statusText='关闭';    
             } else {
-                status="ON";
+                action="ON";
                 statusText='打开';     
             }
         }else{
@@ -112,8 +113,10 @@ export default class DeviceItem extends Component{
                         'X-Token':token,
                         'Content-Type':'application/json'
                     };
-                    let params={"deviceId": rowData.DEVICE_ID,"regionId": orgId,"status": status};
+                    let params={"deviceId": rowData.DEVICE_ID,"regionId": orgId,"status": action};
                     Network.postJson(api.HOST+api.DEVICES_UPDATE,params, headers,(res)=>{
+                        console.info(action)
+                        console.info(res)
                         if(res.meta.success){
                         this.setState({
                             SwitchIsOn:!this.state.SwitchIsOn,

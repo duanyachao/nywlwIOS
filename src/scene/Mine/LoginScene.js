@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import {
     BackHandler,
+    DeviceEventEmitter,
     Image,
     PixelRatio,
     View,
@@ -103,7 +104,11 @@ export default class LoginScene extends Component {
                         phoneNum: this.state.phoneNum,
                         userId: this.state.userId
                     }
-                }).then(this.goRootScene());
+                }).then(()=>{
+                    DeviceEventEmitter.emit('loginSuccess',this.state.loginName)
+                    this.goRootScene()
+                }
+                );
 
             } else {
                 toastShort('登录失败，请重新尝试');
@@ -211,10 +216,8 @@ const styles = StyleSheet.create({
     },
 
     icon: {
-        width: 18,
-        height: 18,
         marginLeft: 14,
-        marginRight: 9,
+        marginRight: 0,
         alignItems: 'center'
     },
     textStyle: {

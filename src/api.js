@@ -1,6 +1,6 @@
 export default{
-    HOST:'http://221.13.156.250:9004/api/v1/',
-    // HOST:'http://172.16.88.45:8080/nywlw/api/v1/',
+    // HOST:'http://221.13.156.250:9004/api/v1/',
+    HOST:'http://nywlw.hnyfkj.com/api/v1/',
     DO_LOGIN:'doLogin',
     REGIONS:'org/regions',
     DEVICES:'terminaldevice/devices',

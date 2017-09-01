@@ -1,27 +1,28 @@
 //import liraries
 import React, { Component } from 'react';
 import {
+    DeviceEventEmitter,
     FlatList,
     View,
     Text,
     StyleSheet
 } from 'react-native';
 import { Header } from '../../components';
+import { theme,screen } from '../../common';
 import { Network, toastShort } from '../../utils';
 import api from '../../api';
-import WarnAreaList from './WarnAreaList';
+import WarnInfoList from './WarnInfoList';
 // create a component
 const pageSize = 10;
 export default class WarnScene extends Component {
-    // static navigationOptions = ({navigation}) => (
-    //     {
-    //         header: (<Header navigation={navigation} title='报警信息'></Header>),
-    //     })
+    static navigationOptions={
+        header: <Header title='报警信息'></Header>
+    }
     constructor(props) {
         super(props);
         this.state = {
-            areaListData: [],
-            token: null
+            areaListData: null,
+            noWarn:true
         }
     }
     requestAreaData() {
@@ -29,9 +30,6 @@ export default class WarnScene extends Component {
         let headers = {
             'X-Token': token
         };
-        this.setState({
-            token: token
-        })
         Network.get(api.HOST + api.REGIONS, '', headers, (res) => {
             if (res.meta.success) {
                 this.setState({
@@ -48,15 +46,21 @@ export default class WarnScene extends Component {
         })
     }
     renderItem(item) {
-        return (<WarnAreaList data={item.item} token={this.state.token}></WarnAreaList>)
+        return (<WarnInfoList areaData={item.item}></WarnInfoList>)
     }
     keyExtractor = (item, index) => item.id;
     componentDidMount() {
         this.requestAreaData()
-        this.timer = setInterval(() => { this.requestAreaData()},10000)
+        
+        this.warnListener = DeviceEventEmitter.addListener('报警状态',(msg)=>{
+            // console.info(msg)
+            (msg.meta.success && msg.data && msg.data.status!==0)?this.setState({noWarn:false}):null 
+
+        });
     }
     componentWillUnmount() {
-        this.timer && clearTimeout(this.timer);
+        
+        this.warnListener && this.warnListener.remove();
     }
     render() {
         const itemH = 100;
@@ -74,6 +78,7 @@ export default class WarnScene extends Component {
                     ref="warnInfoList"
                     renderItem={(item) => this.renderItem(item)}
                 ></FlatList>
+                {(this.state.noWarn) ? <View style={styles.noWarnWrapper}><Text>无报警</Text></View> : null}
             </View>
         );
     }
@@ -86,4 +91,13 @@ const styles = StyleSheet.create({
         backgroundColor: '#eee',
 
     },
+    noWarnWrapper: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        bottom: 0,
+        right: 0,
+        justifyContent:'center',
+        alignItems:'center'
+    }
 });

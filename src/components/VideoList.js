@@ -91,7 +91,7 @@ export default class VideoList extends Component {
                     
                     <Player url={this.state.forwordUrl}></Player>
                     
-                    : <Text style={{ textAlign: 'center', paddingTop: 10 }}>无视频</Text>}
+                    : <View style={theme.nodata}><Text>无视频</Text></View>}
             </View>
         );
     }

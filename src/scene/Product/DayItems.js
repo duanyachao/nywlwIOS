@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 import { Button } from '../../components';
-import { screen } from '../../common';
+import { screen,theme } from '../../common';
 import api from '../../api';
 import { Network, toastShort } from '../../utils';
 // create a component
@@ -227,7 +227,7 @@ export default class dayItems extends Component {
                             </View>
                             : null}
                     </View>
-                    : <View><Text>无数据</Text></View>}
+                    : <View style={theme.nodata}><Text>无数据</Text></View>}
             </View>
         )
 
