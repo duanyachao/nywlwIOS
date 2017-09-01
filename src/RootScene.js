@@ -67,7 +67,7 @@ export default class RootScene extends Component {
             }
         });
         this.loginListener = DeviceEventEmitter.addListener('loginSuccess', (msg) => {
-            // console.info(msg)
+            console.info(msg)
             JPushModule.setAlias(msg, (map) => {
                 if (map.errorCode === 0) {
                     // console.log("set alias succeed");
