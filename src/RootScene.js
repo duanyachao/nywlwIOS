@@ -39,99 +39,80 @@ export default class RootScene extends Component {
             currentRoute:null
         }
     }
-    onBackAndroid = () => {
-        let routes = this.refs.navigator.state.nav.routes;
-
-        if (routes.length == 1) {
-            if (this.lastBackPressed && this.lastBackPressed + 2000 >= Date.now()) {
-                BackHandler.exitApp();
-                return true;
-            }
-            this.lastBackPressed = Date.now();
-            toastShort('再按一次退出应用');
-            return true
-        } else {
-            return false
-        }
+    // componentDidMount() {
 
 
-    }
-    componentDidMount() {
-        if (system.isAndroid) {
-            BackHandler.addEventListener('hardwareBackPress', this.onBackAndroid);
-        }
+    //     // 在收到点击事件之前调用此接口
+    //     JPushModule.notifyJSDidLoad((resultCode) => {
+    //         if (resultCode === 0) {
+    //         }
+    //     });
+    //     this.loginListener = DeviceEventEmitter.addListener('loginSuccess', (msg) => {
+    //         console.info(msg)
+    //         JPushModule.setAlias(msg, (map) => {
+    //             if (map.errorCode === 0) {
+    //                 // console.log("set alias succeed");
+    //             } else {
+    //                 // console.log("set alias failed, errorCode: " + map.errorCode);
+    //             }
+    //         });
 
-        // 在收到点击事件之前调用此接口
-        JPushModule.notifyJSDidLoad((resultCode) => {
-            if (resultCode === 0) {
-            }
-        });
-        this.loginListener = DeviceEventEmitter.addListener('loginSuccess', (msg) => {
-            console.info(msg)
-            JPushModule.setAlias(msg, (map) => {
-                if (map.errorCode === 0) {
-                    // console.log("set alias succeed");
-                } else {
-                    // console.log("set alias failed, errorCode: " + map.errorCode);
-                }
-            });
+    //     })
+    //     JPushModule.getInfo((map) => {
+    //         // console.info(map)
+    //     });
 
-        })
-        JPushModule.getInfo((map) => {
-            // console.info(map)
-        });
-
-        JPushModule.addReceiveNotificationListener((message) => {
-            let msgType = eval('(' + message.extras + ')');
-            this.setState({
-                message: message.alertContent,
-                msgType: msgType.type
-            })
-            if(!this.state.isOpen){
-                Alert.alert(
-                    (this.state.msgType == 'alarm') ? '报警提示' : '任务提示',
-                    this.state.message,
-                    [
-                        // {
-                        //     text: '查看详情', onPress: () => {
-                        //         let routeName=this.state.currentRoute;
-                        //         console.info(routeName)
-                        //         if (routeName) {
-                        //             this.refs.navigator.navigation.navigate('Msg', { 'title': '我的消息' });
-                        //         } else {
+    //     JPushModule.addReceiveNotificationListener((message) => {
+    //         let msgType = eval('(' + message.extras + ')');
+    //         this.setState({
+    //             message: message.alertContent,
+    //             msgType: msgType.type
+    //         })
+    //         if(!this.state.isOpen){
+    //             Alert.alert(
+    //                 (this.state.msgType == 'alarm') ? '报警提示' : '任务提示',
+    //                 this.state.message,
+    //                 [
+    //                     // {
+    //                     //     text: '查看详情', onPress: () => {
+    //                     //         let routeName=this.state.currentRoute;
+    //                     //         console.info(routeName)
+    //                     //         if (routeName) {
+    //                     //             this.refs.navigator.navigation.navigate('Msg', { 'title': '我的消息' });
+    //                     //         } else {
                                     
-                        //         }
-                        //     }
-                        // }
-                        {
-                            text: '确定', onPress: () => {
+    //                     //         }
+    //                     //     }
+    //                     // }
+    //                     {
+    //                         text: '确定', onPress: () => {
                                 
-                            }
-                        }
+    //                         }
+    //                     }
     
-                    ],
-                    { cancelable: false }
-                )
-            }
-            // console.info(message)
-            DeviceEventEmitter.emit('receiveMsg', message)
-        })
-        // JPushModule.addReceiveOpenNotificationListener((message) => {
-        //     if (this.props.navigation === undefined) {
-        //         // 启动主页面，初始化 navigation
-        //         // 保存跳转事件，初始化完成后跳转
-        //         // console.info(this.props.navigation)
-        //     } else {
-        //         // 跳转
-        //         InteractionManager.runAfterInteractions(() => {
-        //             this.props.navigation.navigate('Msg', { title: '我的消息' })
-        //         })
-        //     }
+    //                 ],
+    //                 { cancelable: false }
+    //             )
+    //         }
+    //         // console.info(message)
+    //         DeviceEventEmitter.emit('receiveMsg', message)
+    //     })
+    //     // JPushModule.addReceiveOpenNotificationListener((message) => {
+    //     //     if (this.props.navigation === undefined) {
+    //     //         // 启动主页面，初始化 navigation
+    //     //         // 保存跳转事件，初始化完成后跳转
+    //     //         // console.info(this.props.navigation)
+    //     //     } else {
+    //     //         // 跳转
+    //     //         InteractionManager.runAfterInteractions(() => {
+    //     //             this.props.navigation.navigate('Msg', { title: '我的消息' })
+    //     //         })
+    //     //     }
 
-        //     // DeviceEventEmitter.emit('msg');        
-        // });
+    //     //     // DeviceEventEmitter.emit('msg');        
+    //     // });
 
-    }
+    // }
     componentWillUnmount() {
         if (system.isAndroid) {
             BackHandler.removeEventListener('hardwareBackPress', this.onBackAndroid);
