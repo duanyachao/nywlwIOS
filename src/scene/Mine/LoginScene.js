@@ -86,7 +86,6 @@ export default class LoginScene extends Component {
         let params = { 'loginName': this.state.loginName, 'password': this.state.passWord, 'phoneNum': this.state.phoneNum };
         Network.postJson(api.HOST + api.DO_LOGIN, params, headers, (res) => {
             if (res.meta && res.meta.success) {
-                // console.info(res)
                 this.setState({
                     token: res.data.token,
                     userId: res.data.user.userId,
