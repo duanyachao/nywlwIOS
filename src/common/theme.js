@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
 import screen from './screen'
+import {setSpText,scaleSize} from './scale';
 export default {
     theme: '#06C1AE',
     border: '#e0e0e0',
@@ -12,6 +13,8 @@ export default {
         alignItems: 'center',
 
     },
+    pcikerTipIconSize:16,
+    pcikerRightIconSize:18
 }
 export const pickerStyle=StyleSheet.create({
      container: {
@@ -30,7 +33,7 @@ export const pickerStyle=StyleSheet.create({
     },
     pickerTipText: {
         paddingLeft: 10,
-        fontSize: 14,
+        fontSize:setSpText(14),
         color: '#222'
     },
     picker: {
@@ -39,7 +42,7 @@ export const pickerStyle=StyleSheet.create({
         alignItems: 'center'
     },
     pickered: {
-        fontSize: 14,
+        fontSize: setSpText(14),
         color: '#8c8c8c',
         paddingRight:10
     },

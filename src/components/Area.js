@@ -20,6 +20,7 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { theme } from '../common';
 import {pickerStyle} from '../common/theme';
+import {setSpText,scaleSize} from '../common/scale';
 export default class Area extends Component {
     constructor(props) {
         super(props);
@@ -76,7 +77,7 @@ export default class Area extends Component {
         return (
             <View style={pickerStyle.container}>
                 <View style={pickerStyle.pickerTip}>
-                    <Icon name='map-signs' size={18} color={theme.iconColor}></Icon>
+                    <Icon name='map-signs' size={setSpText(theme.pcikerTipIconSize)} color={theme.iconColor}></Icon>
                     <Text style={pickerStyle.pickerTipText}>生产区域</Text>
                 </View>
                 {this.state.dataSource ?
@@ -85,7 +86,7 @@ export default class Area extends Component {
                         onPress={() => this.setState({ modalVisible: !this.state.modalVisible })}>
                         <View style={pickerStyle.picker}>
                             <Text style={pickerStyle.pickered}>{this.state.orgName}</Text>
-                            <Icon name='angle-right' size={24} color='#8c8c8c'></Icon>
+                            <Icon name='angle-right' size={setSpText(theme.pcikerRightIconSize)} color='#8c8c8c'></Icon>
                         </View>
                     </TouchableHighlight>
                     : <View></View>

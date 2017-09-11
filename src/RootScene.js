@@ -4,6 +4,7 @@ import {
     Alert,
     DeviceEventEmitter,
     InteractionManager,
+    StatusBar,
     View,
     Text,
     StyleSheet,
@@ -29,6 +30,7 @@ import ModifyPasswordScene from './scene/Mine/ModifyPasswordScene'
 import VideoScene from './scene/Video/VideoScene'
 // import TabScene from './scene/TabScene'
 import JPushModule from 'jpush-react-native';
+import {setSpText,scaleSize} from './common/scale';
 export default class RootScene extends Component {
     constructor(props) {
         super(props)
@@ -114,9 +116,6 @@ export default class RootScene extends Component {
 
     // }
     componentWillUnmount() {
-        if (system.isAndroid) {
-            BackHandler.removeEventListener('hardwareBackPress', this.onBackAndroid);
-        }
         this.loginListener.remove();
         JPushModule.removeReceiveCustomMsgListener();
         JPushModule.removeReceiveNotificationListener();
@@ -124,6 +123,9 @@ export default class RootScene extends Component {
     render() {
         return (
             <View style={{ flex: 1 }}>
+                <StatusBar
+                    barStyle='default'
+                    ></StatusBar>
                 <Navigator 
                 ref='navigator' 
                 onNavigationStateChange={
@@ -180,7 +182,7 @@ const TabScene = TabNavigator({
             activeTintColor: theme.theme,
             inactiveTintColor: '#979797',
             labelStyle: {
-                fontSize: theme.tabFontSize,
+                fontSize: setSpText(theme.tabFontSize),
             },
             style: { backgroundColor: '#fff' },
         },
@@ -191,7 +193,7 @@ const TabOptions = (tabBarTitle, navigation, iconName, isheader, navTitle) => {
     const tabBarIcon = (({tintColor, focused}) => {
         return (
             <Icon name={iconName}
-                size={theme.tabIconsize}
+                size={setSpText(theme.tabIconsize)}
                 style={{ color: tintColor }}>
             </Icon>
         )
@@ -210,7 +212,7 @@ const StackOptions = ({navigation}) => {
         borderBottomColor: '#ccc'
     };
     const headerTitle = state.params.title;
-    const headerTitleStyle = { color: '#a9a9a9', fontSize: 16 }
+    const headerTitleStyle = { color: '#a9a9a9', fontSize: setSpText(16) }
     const headerBackTitle = false;
     const headerLeft =
         <Icon.Button

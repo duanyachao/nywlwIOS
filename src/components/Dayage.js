@@ -13,6 +13,7 @@ import { pickerStyle } from '../common/theme';
 import Picker from 'react-native-picker';
 import api from '../api';
 import { Network, toastShort } from '../utils';
+import {setSpText,scaleSize} from '../common/scale';
 // create a component
 export default class Dayage extends Component {
     constructor(props) {
@@ -89,7 +90,7 @@ export default class Dayage extends Component {
         return (
             <View style={pickerStyle.container}>
                 <View style={pickerStyle.pickerTip}>
-                    <Icon name='calendar' size={18} color={theme.iconColor}></Icon>
+                    <Icon name='calendar' size={setSpText(theme.pcikerTipIconSize)}color={theme.iconColor}></Icon>
                     <Text style={pickerStyle.pickerTipText}>日龄</Text>
                 </View>
                 {(this.state.selectedIndex) ?
@@ -98,7 +99,7 @@ export default class Dayage extends Component {
                         onPress={() => this.selectDayAge()}>
                         <View style={pickerStyle.picker}>
                             <Text style={pickerStyle.pickered}>{this.state.selectedIndex}</Text>
-                            <Icon name='angle-right' size={24} color='#8c8c8c'></Icon>
+                            <Icon name='angle-right' size={setSpText(theme.pcikerRightIconSize)} color='#8c8c8c'></Icon>
                         </View>
                     </TouchableHighlight> : <View style={pickerStyle.nopicker}><Text style={pickerStyle.nopickerText}>暂无日龄</Text></View>}
 

@@ -12,12 +12,14 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { screen, theme } from '../common';
+import {setSpText,scaleSize} from '../common/scale';
 const styles = StyleSheet.create({
     topBar: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        height: 45,
+        marginTop:20,
+        height: setSpText(45),
         backgroundColor: theme.theme
     },
     msgIcon: {
@@ -31,7 +33,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     topBarCenterTitle: {
-        fontSize: 15,
         color: '#fff',
     },
     topBarRight: {

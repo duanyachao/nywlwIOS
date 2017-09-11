@@ -13,7 +13,7 @@ import { Network, toastShort } from '../../utils';
 import api from '../../api';
 import { ParamsIcon } from '../../common/Normal';
 import { theme, screen } from '../../common';
-
+import {setSpText,scaleSize} from '../../common/scale';
 // create a component
 export default class WarnInfoList extends Component {
     constructor(props) {
@@ -52,13 +52,13 @@ export default class WarnInfoList extends Component {
                         })
                         
                     } else {
-                        console.info(res)
+                        // console.info(res)
                     }
                     DeviceEventEmitter.emit('报警状态',res);         
                 })
             }
         } catch (error) {
-            console.info(error)
+            // console.info(error)
         }
 
     }
@@ -126,15 +126,20 @@ export default class WarnInfoList extends Component {
         }
         return (
             <View key={i} style={styles.warnItem}>
-                <Icon name='exclamation-circle' size={22} color={warnColor}></Icon>
+                <Icon name='exclamation-circle' size={18} color={warnColor}></Icon>
                 <View style={styles.warnName}>
-                    <Text>{item.codename}</Text>
-                    <Text>{item.createTime}</Text>
+                    <Text style={styles.warnText}>{item.codename}</Text>
+                    <Text style={styles.warnText}>{item.createTime}</Text>
                 </View>
                 <View style={styles.block}><Text></Text></View>
-                <Image source={paramsIcon} style={styles.paramsIcon}></Image>
-                <View style={styles.warnValue}><Text>{item.value}</Text></View>
-                <View style={[styles.warnLevel, { borderTopColor: warnColor, borderRightColor: warnColor }]}><Text style={styles.warnLevelText}>{warnLevel}</Text></View>
+                <Image source={paramsIcon} resizeMode='contain' style={styles.paramsIcon}></Image>
+                <View style={styles.warnValue}><Text style={styles.warnText}>{item.value}</Text></View>
+                <View style={[styles.warnLevel, { borderTopColor: warnColor, borderRightColor: warnColor }]}>
+                    <View style={styles.warnLevelTextWrapper}>
+                        <Text style={styles.warnLevelText}>{warnLevel}</Text>
+                    </View>
+                    
+                </View>
             </View>
         )
     }
@@ -175,7 +180,7 @@ const styles = StyleSheet.create({
     warnItem: {
         flexDirection: 'row',
         alignItems: 'center',
-        padding: 8,
+        paddingLeft: 8,
         backgroundColor: '#fff',
         borderBottomWidth: 5,
         borderBottomColor: theme.background
@@ -188,14 +193,15 @@ const styles = StyleSheet.create({
     },
     warnAreaTitleText: {
         paddingLeft: 8,
-        fontSize: 14,
-        fontWeight: "400",
+        fontSize:setSpText(14)
 
     },
-    warnIcon: { width: 32, height: 32 },
-    paramsIcon: { width: 32, height: 32, marginLeft: 10 },
+    paramsIcon: { width: setSpText(32), height: setSpText(32), marginLeft: 10 },
     warnName: { paddingLeft: 12, paddingRight: 10 },
     warnValue: { paddingLeft: 12, flex: 1 },
+    warnText:{
+        fontSize:setSpText(12)
+    },
     nodata: {
         padding: 10,
         alignItems: 'center',
@@ -209,17 +215,18 @@ const styles = StyleSheet.create({
         backgroundColor: '#ccc'
     },
     warnLevel: {
-        marginTop: -12,
-        marginRight: -8,
         width: 0,
         borderWidth: 25,
         borderLeftColor: '#fff',
         borderBottomColor: '#fff',
     },
+    warnLevelTextWrapper:{
+        backgroundColor:'transparent'
+    },
     warnLevelText: {
+        fontSize:setSpText(12),
         position: 'absolute',
         color: '#fff',
-        fontSize: 12,
         transform: [{ translateY: -15 }, { rotate: '45deg' }]
     }
 });
