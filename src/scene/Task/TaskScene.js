@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import {Header,Area,Batch,Dayage} from '../../components';
 import TaskList from './TaskList';
+
 // create a component
 export default class TaskScene extends Component {
     constructor(props) {

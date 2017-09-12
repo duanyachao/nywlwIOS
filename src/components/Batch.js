@@ -75,6 +75,8 @@ export default class Bacth extends Component {
             pickerConfirmBtnText: '确定',
             pickerCancelBtnText:'取消',
             pickerTitleText:'选择批次',
+            pickerToolBarFontSize:setSpText(14),
+            pickerFontSize:setSpText(14),
             pickerData: batchLists,
             selectedValue:[(this.state.batchIndex)?batchLists[this.state.batchIndex]:batchLists[0]],
             onPickerConfirm: batch => {

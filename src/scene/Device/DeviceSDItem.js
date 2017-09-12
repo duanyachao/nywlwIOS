@@ -11,6 +11,8 @@ import{
 import api from '../../api';
 import { Network, toastShort } from '../../utils';
 import{DeviceIcon} from '../../common/Normal';
+import { theme,screen } from '../../common';
+import {setSpText,scaleSize} from '../../common/scale';
 const styles=StyleSheet.create({
     itemStyle:{
         height:46,
@@ -18,21 +20,23 @@ const styles=StyleSheet.create({
         justifyContent:'space-between',
         alignItems:'center',
         borderBottomColor:'#dcdcdc',
-        borderBottomWidth:1,
+        borderBottomWidth:screen.onePixel,
         backgroundColor:'#fff'
     },
     deviceName:{
         flexDirection:'row',
         justifyContent:'center',
         alignItems:'center',
-        paddingLeft:10,    
+        paddingLeft:10,
+
     },
     deviceIcon:{
-        width:32,
-        height:32,
+        width:setSpText(32),
+        height:setSpText(32),
         
     },
     deviceNameText:{
+        fontSize:setSpText(theme.normalFontSize),
         paddingLeft:10,
     },
     deviceStatus:{
@@ -41,7 +45,8 @@ const styles=StyleSheet.create({
         paddingRight:10,    
     },
     deviceStatusText:{
-        paddingRight:10,    
+        paddingRight:10,
+        fontSize:setSpText(theme.normalFontSize),    
     }
 })
 export default class DeviceItem extends Component{
@@ -187,7 +192,7 @@ export default class DeviceItem extends Component{
             <TouchableHighlight underlayColor="rgb(255, 255,255)" onPress={() =>this.deviceOperate(rowData,this.state.SwitchIsOn,orgId,token)}>
             <View key={rowID} style={styles.itemStyle}>
                 <View style={styles.deviceName}>
-                     <Image source={this.state.SwitchIsOn?onIcon:offIcon} style={styles.deviceIcon}></Image>
+                     <Image source={this.state.SwitchIsOn?onIcon:offIcon} resizeMode='contain' style={styles.deviceIcon}></Image>
                     <Text style={styles.deviceNameText}>{rowData.DEVICE_NAME}</Text>    
                 </View>
                 <View style={styles.deviceStatus}>

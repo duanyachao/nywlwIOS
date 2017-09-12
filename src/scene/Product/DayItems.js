@@ -5,6 +5,7 @@ import { Button } from '../../components';
 import { screen,theme } from '../../common';
 import api from '../../api';
 import { Network, toastShort } from '../../utils';
+import {setSpText,scaleSize} from '../../common/scale';
 // create a component
 var avgWeight, dayDeaths, dayFodders, feedMeatRate, drugUsage;
 export default class dayItems extends Component {
@@ -98,9 +99,9 @@ export default class dayItems extends Component {
                 {(data) ?
                     <View style={styles.content}>
                         <View style={styles.lrfsTip}>
-                            <View style={{ flexDirection: 'row' }}>
-                                <Text>录入方式:</Text>
-                                <Text style={{ color: 'green', paddingLeft: 6 }}>{this.state.editText}</Text>
+                            <View style={{ flexDirection: 'row',alignItems:'center' }}>
+                                <Text style={{fontSize:setSpText(theme.normalFontSize)}}>录入方式:</Text>
+                                <Text style={{ color: 'green', paddingLeft: 6,fontSize:setSpText(theme.normalFontSize)}}>{this.state.editText}</Text>
                             </View>
 
                             <View style={styles.lrfsTipBtns}>
@@ -192,9 +193,9 @@ export default class dayItems extends Component {
                                         onChangeText={(text) => this.setState({ feedRate: text })}>
                                     </TextInput> : null}
                             </View>
-                            <View style={[styles.dayItem, styles.dayItemRemark]}>
-                                <Text style={[styles.dayItemLeftTip, styles.remarkTip]}>用药情况:</Text>
-                                <View style={{ flex: 1 }}>
+                            <View style={[styles.dayItem, {alignItems:(this.state.editable)?'flex-start':'center'}]}>
+                                <Text style={[styles.remarkTip,{paddingTop:(this.state.editable)?6:0}]}>用药情况:</Text>
+                                <View style={{ flex: 1 ,paddingLeft:6}}>
                                     {(this.state.editable) ?
                                         <TextInput
                                             underlineColorAndroid="transparent"
@@ -244,7 +245,8 @@ const styles = StyleSheet.create({
     lrfsTip: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        padding: 6,
+        paddingVertical: 6,
+        paddingHorizontal:10,
         alignItems: 'center',
         borderBottomColor: '#f0f0f0',
         borderBottomWidth: screen.onePixel,
@@ -266,6 +268,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'red'
     },
     btnTextStyle: {
+        fontSize:setSpText(theme.normalFontSize),
         color: '#fff'
     },
     addBtnStyle: {
@@ -274,6 +277,7 @@ const styles = StyleSheet.create({
     dayItem: {
         height: 45,
         flexDirection: 'row',
+        justifyContent: 'space-between',
         alignItems: 'center',
         paddingHorizontal: 10,
         borderBottomColor: '#f0f0f0',
@@ -281,31 +285,35 @@ const styles = StyleSheet.create({
 
     },
     dayItemLeftTip: {
-        width: 90,
-        textAlign: 'justify'
+        fontSize:setSpText(theme.normalFontSize),
+        flex:1,
     },
     dayItemText: {
-        width: 120,
-        textAlign: 'center'
+        flex:1,
     },
     textInput: {
-        position: 'absolute',
-        width: 100,
-        right: 10,
+        flex:1,
         alignItems: 'center',
         backgroundColor: '#eee',
-        padding: 0,
-        paddingLeft: 6
+        marginVertical:6,
+        paddingLeft:16,
+        fontSize:setSpText(theme.normalFontSize)
     },
-    dayItemRemark: {
-        height: 60,
-    },
+    // dayItemRemark: {
+    //     alignItems:'flex-start'
+    // },
     remarkTip: {
+        fontSize:setSpText(theme.normalFontSize)
     },
     remarkText: {
+        fontSize:setSpText(12)
     },
     remarkTextInput: {
+        flex:1,
         backgroundColor: '#eee',
+        alignItems:'stretch',
+        marginVertical:4,
+        fontSize:setSpText(12)
     },
     saveBtnGroup: {
         padding: 8,
@@ -314,12 +322,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     updateBtnStyle: {
-        backgroundColor: 'blue'
+        backgroundColor: 'blue',
+        
     },
     cancelBtnStyle: {
         backgroundColor: 'green'
     },
     saveBtnTextStyle: {
-        color: '#fff'
+        color: '#fff',
+        fontSize:setSpText(theme.normalFontSize)
     },
 });

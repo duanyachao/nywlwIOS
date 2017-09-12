@@ -5,8 +5,8 @@ export default {
     theme: '#06C1AE',
     border: '#e0e0e0',
     background: '#f3f3f3',
-    tabIconsize:24,
-    tabFontSize:12,
+    tabIconsize:setSpText(24),
+    tabFontSize:setSpText(14),
     iconColor:'rgb(55,179,117)',
     nodata: {
         padding: 10,
@@ -14,7 +14,8 @@ export default {
 
     },
     pcikerTipIconSize:16,
-    pcikerRightIconSize:18
+    pcikerRightIconSize:16,
+    normalFontSize:14
 }
 export const pickerStyle=StyleSheet.create({
      container: {
@@ -76,7 +77,8 @@ export const rowStyle=StyleSheet.create({
         textAlign: 'center'
     },
     itemTip: {
-        paddingLeft: 10
+        paddingLeft: 10,
+        fontSize:setSpText(14)
     },
     myItemLeft: {
         flexDirection: 'row',

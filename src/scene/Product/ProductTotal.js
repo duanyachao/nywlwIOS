@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { theme } from '../../common';
+import {setSpText,scaleSize} from '../../common/scale';
 // create a component
 export default class ProductTotal extends Component {
     constructor(props){
@@ -14,7 +15,7 @@ export default class ProductTotal extends Component {
             (totalData)?<View style={styles.totalStyle}>
                     <View style={styles.totalItemStyle}>
                         <View style={styles.totalItemLeftStyle}>
-                            <Icon name='list' size={18} color={theme.iconColor}></Icon>
+                            <Icon name='list' size={setSpText(theme.pcikerTipIconSize)} color={theme.iconColor}></Icon>
                             <Text style={styles.totalItemLeftTextStyle}>进鸡总数</Text>
                         </View>
                         <View style={styles.totalItemRightStyle}>
@@ -24,7 +25,7 @@ export default class ProductTotal extends Component {
                     </View>
                     <View style={styles.totalItemStyle}>
                         <View style={styles.totalItemLeftStyle}>
-                            <Icon name='list' size={18} color={theme.iconColor}></Icon>
+                            <Icon name='list' size={setSpText(theme.pcikerTipIconSize)} color={theme.iconColor}></Icon>
                             <Text style={styles.totalItemLeftTextStyle}>总存栏数</Text>
                         </View>
                         <View style={styles.totalItemRightStyle}>
@@ -34,7 +35,7 @@ export default class ProductTotal extends Component {
                     </View>
                     <View style={styles.totalItemStyle}>
                         <View style={styles.totalItemLeftStyle}>
-                            <Icon name='list' size={18} color={theme.iconColor}></Icon>
+                            <Icon name='list' size={setSpText(theme.pcikerTipIconSize)} color={theme.iconColor}></Icon>
                             <Text style={styles.totalItemLeftTextStyle}>死亡总数</Text>
                         </View>
                         <View style={styles.totalItemRightStyle}>
@@ -44,7 +45,7 @@ export default class ProductTotal extends Component {
                     </View>
                     <View style={styles.totalItemStyle}>
                         <View style={styles.totalItemLeftStyle}>
-                            <Icon name='list' size={18} color={theme.iconColor}></Icon>
+                            <Icon name='list' size={setSpText(theme.pcikerTipIconSize)}color={theme.iconColor}></Icon>
                             <Text style={styles.totalItemLeftTextStyle}>总用料量</Text>
                         </View>
                         <View style={styles.totalItemRightStyle}>
@@ -73,11 +74,12 @@ const styles = StyleSheet.create({
 
     },
     totalItemLeftStyle: {
-        flexDirection: 'row'
+        flexDirection: 'row',
+        alignItems:'center'
     },
     totalItemLeftTextStyle: {
         paddingLeft: 10,
-        fontSize: 14,
+        fontSize:setSpText(14),
         color: '#222'
     },
     totalItemRightStyle: {

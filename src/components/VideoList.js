@@ -14,6 +14,7 @@ import Picker from 'react-native-picker';
 import api from '../api';
 import { Network, toastShort } from '../utils';
 import {Player} from '../components'
+import {setSpText,scaleSize} from '../common/scale';
 // create a component
 export default class VideoList extends Component {
     constructor(props) {
@@ -40,6 +41,8 @@ export default class VideoList extends Component {
             pickerConfirmBtnText: '确定',
             pickerCancelBtnText: '取消',
             pickerTitleText: '选择监控点',
+            pickerToolBarFontSize:setSpText(theme.normalFontSize),
+            pickerFontSize:setSpText(theme.normalFontSize),
             pickerData: videoLists,
             selectedValue: [this.state.vcameraName],
             onPickerConfirm: data => {
@@ -74,7 +77,7 @@ export default class VideoList extends Component {
             <View style={styles.container}>
                 <View style={pickerStyle.container}>
                     <View style={pickerStyle.pickerTip}>
-                        <Icon name='calendar' size={18} color={theme.iconColor}></Icon>
+                        <Icon name='calendar' size={setSpText(theme.pcikerTipIconSize)} color={theme.iconColor}></Icon>
                         <Text style={pickerStyle.pickerTipText}>监控点</Text>
                     </View>
                     {(this.props.videoList && this.props.videoList.length > 0) ?
@@ -83,7 +86,7 @@ export default class VideoList extends Component {
                             onPress={() => this.selectVideo(this.props.videoList)}>
                             <View style={pickerStyle.picker}>
                                 <Text style={pickerStyle.pickered}>{(this.state.vcameraName) ? this.state.vcameraName : null}</Text>
-                                <Icon name='angle-right' size={24} color='#8c8c8c'></Icon>
+                                <Icon name='angle-right' size={setSpText(theme.pcikerRightIconSize)} color='#8c8c8c'></Icon>
                             </View>
                         </TouchableHighlight> : <View style={pickerStyle.nopicker}><Text style={pickerStyle.nopickerText}>暂无监控</Text></View>}
                 </View>

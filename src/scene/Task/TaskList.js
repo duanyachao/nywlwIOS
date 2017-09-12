@@ -12,6 +12,7 @@ import api from '../../api';
 import { screen,theme } from '../../common';
 import { Network, toastShort } from '../../utils';
 import TaskItem from './TaskItem';
+import {setSpText,scaleSize} from '../../common/scale';
 // create a component
 export default class TaskList extends Component {
     constructor(props) {
@@ -55,7 +56,7 @@ export default class TaskList extends Component {
     renderHeader() {
         return (
             <View style={styles.taskTitle}>
-                <Icon name='bars' size={24} color={theme.iconColor}></Icon>
+                <Icon name='bars' size={setSpText(16)} color={theme.iconColor}></Icon>
                 <Text style={styles.taskTitleText}>任务列表</Text>
             </View>
         )
@@ -90,6 +91,7 @@ const styles = StyleSheet.create({
     },
     taskTitleText: {
         paddingLeft: 10,
+        fontSize:setSpText(14)
 
     },
     

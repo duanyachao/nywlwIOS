@@ -18,6 +18,7 @@ import api from '../../api';
 import { Network, toastShort } from '../../utils';
 import ProductTotal from './ProductTotal';
 import DayItems from './DayItems';
+import {setSpText,scaleSize} from '../../common/scale';
 // create a component
 export default class ProductScene extends Component {
     constructor(props) {
@@ -95,7 +96,7 @@ export default class ProductScene extends Component {
                 </Batch>
                 {(this.state.currentDayTotalData)?<ProductTotal totalData={this.state.currentDayTotalData}></ProductTotal>:null}
                 <View style={styles.sjlrTit}>
-                    <Icon name='pencil' size={18} color={theme.iconColor}></Icon>
+                    <Icon name='pencil' size={setSpText(theme.pcikerTipIconSize)} color={theme.iconColor}></Icon>
                     <Text style={styles.sjlrText}>数据录入</Text>
                 </View>
                 <Dayage
@@ -126,7 +127,7 @@ const styles = StyleSheet.create({
     },
     sjlrText: {
         paddingLeft: 10,
-        fontSize: 14,
+        fontSize:setSpText(theme.normalFontSize),
         color: '#222'
     },
    

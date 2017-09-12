@@ -12,6 +12,7 @@ import DeviceListSD from './DeviceListSD';
 import DeviceListSSD from './DeviceListSSD';
 import api from '../../api';
 import { Network, toastShort } from '../../utils';
+import {setSpText,scaleSize} from '../../common/scale';
 export default class Devices extends Component {
     constructor(props) {
         super(props);
@@ -91,24 +92,18 @@ const styles = StyleSheet.create({
         alignItems: 'flex-end'
     },
     tabTxt: {
-        marginTop: 0,
+
         color: '#222',
-        fontSize: 13,
-        paddingBottom: 12,
+        fontSize:setSpText(theme.normalFontSize),
+        padding:8
     },
     selectedTabTxt: {
-        marginTop: 0,
         color: '#05b8a5',
-        fontSize: 13,
-        paddingLeft: 6,
-        paddingRight: 6,
-        paddingBottom: 10,
-        borderBottomWidth: 2,
-        borderBottomColor: '#05b8a5'
+        padding:8,
+        fontSize:setSpText(theme.normalFontSize),
     },
     tabItem: {
-        paddingTop: 20,
-        marginTop: 0
+
     },
     selectedTabItem: {
 

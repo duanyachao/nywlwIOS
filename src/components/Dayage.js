@@ -67,6 +67,8 @@ export default class Dayage extends Component {
             pickerConfirmBtnText: '确定',
             pickerCancelBtnText:'取消',
             pickerTitleText:'选择日龄',
+            pickerToolBarFontSize:setSpText(theme.normalFontSize),
+            pickerFontSize:setSpText(theme.normalFontSize),
             pickerData: dayageLists,
             selectedValue:[(this.state.selectedIndex)],
             onPickerConfirm: dayage => {
@@ -90,7 +92,7 @@ export default class Dayage extends Component {
         return (
             <View style={pickerStyle.container}>
                 <View style={pickerStyle.pickerTip}>
-                    <Icon name='calendar' size={setSpText(theme.pcikerTipIconSize)}color={theme.iconColor}></Icon>
+                    <Icon name='calendar' size={setSpText(theme.pcikerTipIconSize)} color={theme.iconColor}></Icon>
                     <Text style={pickerStyle.pickerTipText}>日龄</Text>
                 </View>
                 {(this.state.selectedIndex) ?

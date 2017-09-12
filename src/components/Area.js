@@ -18,7 +18,7 @@ import {
     Text
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { theme } from '../common';
+import { theme,screen } from '../common';
 import {pickerStyle} from '../common/theme';
 import {setSpText,scaleSize} from '../common/scale';
 export default class Area extends Component {
@@ -54,8 +54,8 @@ export default class Area extends Component {
                 <View style={styles.areaListItem} key={rowId}>
                     <Text style={styles.areaListItemText}>{rowData.orgName}</Text>
                     <View style={styles.gxIcon}>
-                        {(this.state.selectIndex==rowId) ?  <Icon name='check-circle' size={18} color={theme.iconColor}></Icon>:
-                        <Icon name='circle-thin' size={18} color={"#eee"}></Icon>
+                        {(this.state.selectIndex==rowId) ?  <Icon name='check-circle' size={theme.pcikerTipIconSize} color={theme.iconColor}></Icon>:
+                        <Icon name='circle-thin' size={theme.pcikerTipIconSize} color={"#eee"}></Icon>
                     }
                     </View>
                 </View>
@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
         height: 44,
         borderBottomColor: '#efefef',
         alignItems: 'center',
-        borderBottomWidth: 1,
+        borderBottomWidth:screen.onePixel,
         paddingLeft: 18
 
     },
@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
         paddingRight: 14
     },
     areaListItemText: {
-        fontSize: 18,
+        fontSize:setSpText(14),
         color: '#000'
     }
 });

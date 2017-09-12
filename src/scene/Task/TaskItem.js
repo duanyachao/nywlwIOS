@@ -6,6 +6,7 @@ import api from '../../api';
 import { theme } from '../../components';
 import { screen } from '../../common';
 import { Network, toastShort } from '../../utils';
+import {setSpText,scaleSize} from '../../common/scale';
 // create a component
 export default class TaskItem extends Component {
     constructor(props) {
@@ -103,16 +104,16 @@ export default class TaskItem extends Component {
                         </View>
                         <View style={styles.taskItemLeftBottom}>
                             <View style={styles.taskTime}>
-                                <Icon name='clock-o' size={24} color={'green'}></Icon>
+                                <Icon name='clock-o' size={setSpText(22)} color={'green'}></Icon>
                                 <Text style={styles.taskItemLeftBottomText}>{taskItem.START_TIME}--{taskItem.END_TIME}</Text>
                             </View>
                             {(this.state.switchStatus) ?
                                 <View style={styles.taskIsEnd}>
-                                    <Icon name='clock-o' size={24} color={'red'}></Icon>
+                                    <Icon name='clock-o' size={setSpText(22)} color={'red'}></Icon>
                                     <Text style={styles.taskItemLeftBottomText}>{this.state.taskStatus}</Text>
                                 </View> :
                                 <View style={styles.taskIsEnd}>
-                                    <Icon name='check-circle' size={24} color={'green'}></Icon>
+                                    <Icon name='check-circle' size={setSpText(22)} color={'green'}></Icon>
                                     <Text style={styles.taskItemLeftBottomText}>{this.state.taskStatus}</Text>
                                 </View>}
 
@@ -140,13 +141,16 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: '#fff',
-        // borderBottomWidth: screen.onePixel,
-        // borderBottomColor: '#f0f0f0',
-        marginBottom:1
+        borderBottomWidth: screen.onePixel,
+        borderBottomColor: '#f0f0f0',
     },
     taskItemLeft: {
+        flex:1
+    },
+    taskItemRight:{
     },
     taskItemLeftTop: {
+        paddingBottom:6,
         flexDirection: 'row',
     },
     taskItemLeftBottom: {
@@ -159,8 +163,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center'
     },
-    
+    taskItemLeftTopText:{
+        fontSize:setSpText(14)
+    },
     taskItemLeftBottomText: {
+        fontSize:setSpText(14),
         paddingLeft: 6
     },
     taskItemRight: {

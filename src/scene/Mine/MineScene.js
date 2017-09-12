@@ -20,6 +20,7 @@ import { Header, Button } from '../../components';
 import { Network, toastShort } from '../../utils';
 import api from '../../api';
 import { NavigationActions } from 'react-navigation';
+import {setSpText,scaleSize} from '../../common/scale';
 // create a component
 class MineScene extends Component {
     constructor(props) {
@@ -85,7 +86,7 @@ class MineScene extends Component {
         return (
             <View style={styles.container}>
                 <View style={[styles.userWrapper, styles.marginBottom]}>
-                    <Image style={styles.touxPic} source={require('../../imgs/userCenter/user.png')}></Image>
+                    <Image style={styles.touxPic} resizeMode='contain' source={require('../../imgs/userCenter/user.png')}></Image>
                     <TouchableOpacity
                         activeOpacity={.6}
                         onPress={() => this.props.navigation.navigate('UserInfo',
@@ -96,12 +97,10 @@ class MineScene extends Component {
                         }>
                         <View style={styles.userRightText}>
                             <Text style={styles.trueNameText}>{(this.state.userInfo) ? this.state.userInfo.realName : ''}</Text>
-
                             <View style={styles.info}>
                                 <Text style={styles.infoTip}>个人信息</Text>
-                                <Icon style={styles.arrowIcon} name='angle-right' size={18} color="#fff"></Icon>
+                                <Icon style={styles.arrowIcon} name='angle-right' size={setSpText(theme.pcikerRightIconSize)} color="#fff"></Icon>
                             </View>
-
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -109,12 +108,12 @@ class MineScene extends Component {
                     <TouchableOpacity onPress={() => /*this.props.navigation.navigate('Msg', { title: '我的信息' })*/{}}>
                         <View style={rowStyle.myItem}>
                             <View style={rowStyle.myItemLeft}>
-                                <Icon style={rowStyle.tipIcon} name='comment-o' size={18} color={theme.theme}></Icon>
+                                <Icon style={rowStyle.tipIcon} name='comment-o' size={setSpText(theme.pcikerTipIconSize)} color={theme.theme}></Icon>
                                 <Text style={rowStyle.itemTip}>我的消息</Text>
                             </View>
                             <View style={rowStyle.myItemRight}>
                                 <Text style={rowStyle.itemTip}></Text>
-                                <Icon style={rowStyle.arrowIcon} name='angle-right' size={18} color="#ccc"></Icon>
+                                <Icon style={rowStyle.arrowIcon} name='angle-right' size={setSpText(theme.pcikerTipIconSize)} color="#ccc"></Icon>
 
                             </View>
                         </View>
@@ -122,12 +121,12 @@ class MineScene extends Component {
                     <TouchableOpacity onPress={() => /*this.props.navigation.navigate('Myprofit', { title: '我的收益' })*/{}}>
                         <View style={[rowStyle.myItem, rowStyle.noBorerBottom]}>
                             <View style={rowStyle.myItemLeft}>
-                                <IconFont style={rowStyle.tipIcon} name='shouyi' size={18} color={theme.theme}></IconFont>
+                                <IconFont style={rowStyle.tipIcon} name='shouyi' size={setSpText(theme.pcikerTipIconSize)} color={theme.theme}></IconFont>
                                 <Text style={rowStyle.itemTip}>我的收益</Text>
                             </View>
                             <View style={rowStyle.myItemRight}>
                                 <Text style={rowStyle.itemTip}></Text>
-                                <Icon style={rowStyle.arrowIcon} name='angle-right' size={18} color="#ccc"></Icon>
+                                <Icon style={rowStyle.arrowIcon} name='angle-right' size={setSpText(theme.pcikerTipIconSize)} color="#ccc"></Icon>
                             </View>
                         </View>
                     </TouchableOpacity>
@@ -136,12 +135,12 @@ class MineScene extends Component {
                     <TouchableOpacity onPress={() => this.props.navigation.navigate('ModifyPassword', { title: '修改密码' })}>
                         <View style={rowStyle.myItem}>
                             <View style={rowStyle.myItemLeft}>
-                                <Icon style={rowStyle.tipIcon} name='key' size={18} color={theme.theme}></Icon>
+                                <Icon style={rowStyle.tipIcon} name='key' size={setSpText(theme.pcikerTipIconSize)} color={theme.theme}></Icon>
                                 <Text style={rowStyle.itemTip}>修改密码</Text>
                             </View>
                             <View style={rowStyle.myItemRight}>
                                 <Text style={rowStyle.itemTip}></Text>
-                                <Icon style={rowStyle.arrowIcon} name='angle-right' size={18} color="#ccc"></Icon>
+                                <Icon style={rowStyle.arrowIcon} name='angle-right' size={setSpText(theme.pcikerTipIconSize)} color="#ccc"></Icon>
                             </View>
                         </View>
                     </TouchableOpacity>
@@ -157,24 +156,24 @@ class MineScene extends Component {
                     }}>
                         <View style={rowStyle.myItem}>
                             <View style={rowStyle.myItemLeft}>
-                                <Icon style={rowStyle.tipIcon} name='phone' size={18} color={theme.theme}></Icon>
+                                <Icon style={rowStyle.tipIcon} name='phone' size={setSpText(theme.pcikerTipIconSize)} color={theme.theme}></Icon>
                                 <Text style={rowStyle.itemTip}>联系客服</Text>
                             </View>
                             <View style={rowStyle.myItemRight}>
                                 <Text style={rowStyle.itemTip}></Text>
-                                <Text style={{ color: '#c0c0c0', paddingRight: 10 }}>400-001-3876</Text>
+                                <Text style={{ color: '#c0c0c0', paddingRight: 10,fontSize:setSpText(12) }}>400-001-3876</Text>
                                 <Icon style={rowStyle.arrowIcon} name='angle-right' size={18} color="#ccc"></Icon>
                             </View>
                         </View>
                     </TouchableOpacity>
                     <View style={[rowStyle.myItem, rowStyle.noBorerBottom]}>
                         <View style={rowStyle.myItemLeft}>
-                            <Icon style={rowStyle.tipIcon} name='cog' size={18} color={theme.theme}></Icon>
+                            <Icon style={rowStyle.tipIcon} name='cog' size={setSpText(theme.pcikerTipIconSize)} color={theme.theme}></Icon>
                             <Text style={rowStyle.itemTip}>系统设置</Text>
                         </View>
                         <View style={rowStyle.myItemRight}>
                             <Text style={rowStyle.itemTip}></Text>
-                            <Icon style={rowStyle.arrowIcon} name='angle-right' size={18} color="#ccc"></Icon>
+                            <Icon style={rowStyle.arrowIcon} name='angle-right' size={setSpText(theme.pcikerTipIconSize)} color="#ccc"></Icon>
                         </View>
                     </View>
                 </View>
@@ -208,20 +207,23 @@ const styles = StyleSheet.create({
         paddingVertical: 20
     },
     touxPic: {
-        width: 48,
-        height: 48
+        width: setSpText(48),
+        height: setSpText(48),
     },
     userRightText: {
         paddingLeft: 12
     },
     trueNameText: {
-        color: '#fff'
+        fontSize:setSpText(theme.normalFontSize),
+        color: '#fff',
+        paddingBottom:4
     },
     info: {
         flexDirection: 'row',
         alignItems: 'center'
     },
     infoTip: {
+        fontSize:setSpText(theme.normalFontSize),
         color: '#fff',
         paddingRight: 8
     },
@@ -237,6 +239,7 @@ const styles = StyleSheet.create({
         backgroundColor: theme.theme
     },
     btnTip: {
+        fontSize:setSpText(theme.normalFontSize),
         textAlign: 'center',
         color: '#fff'
     }
