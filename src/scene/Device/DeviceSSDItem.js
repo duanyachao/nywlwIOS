@@ -12,7 +12,6 @@ import api from '../../api';
 import { Network, toastShort } from '../../utils';
 import { DeviceIcon } from '../../common/Normal';
 import { theme,screen } from '../../common';
-import {setSpText,scaleSize} from '../../common/scale';
 const styles = StyleSheet.create({
     itemStyle: {
         paddingVertical: 12,
@@ -28,12 +27,12 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     deviceName: {
-        fontSize:setSpText(theme.normalFontSize),
+        fontSize:theme.normalFontSize,
         color: '#222'
 
     },
     deviceStatus: {
-        fontSize:setSpText(theme.normalFontSize),
+        fontSize:theme.normalFontSize,
         color: '#05b8a5'
     },
     sliderWrapper: {

@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         marginTop:20,
-        height: setSpText(45),
+        height:theme.headerH,
         backgroundColor: theme.theme
     },
     msgIcon: {

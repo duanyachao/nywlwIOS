@@ -36,7 +36,8 @@ const scale = Math.min(deviceHeight / h2, deviceWidth / w2);   //获取缩放比
  * return number dp
  */
 export function setSpText(size: number) {
-    size = Math.round((size * scale + 0.5) * pixelRatio / fontScale);
+    size = Math.round((size * scale + 0.5) * pixelRatio);
+    
     return size / defaultPixel;
 }
 

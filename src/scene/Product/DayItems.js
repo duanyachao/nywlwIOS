@@ -5,7 +5,6 @@ import { Button } from '../../components';
 import { screen,theme } from '../../common';
 import api from '../../api';
 import { Network, toastShort } from '../../utils';
-import {setSpText,scaleSize} from '../../common/scale';
 // create a component
 var avgWeight, dayDeaths, dayFodders, feedMeatRate, drugUsage;
 export default class dayItems extends Component {
@@ -100,8 +99,8 @@ export default class dayItems extends Component {
                     <View style={styles.content}>
                         <View style={styles.lrfsTip}>
                             <View style={{ flexDirection: 'row',alignItems:'center' }}>
-                                <Text style={{fontSize:setSpText(theme.normalFontSize)}}>录入方式:</Text>
-                                <Text style={{ color: 'green', paddingLeft: 6,fontSize:setSpText(theme.normalFontSize)}}>{this.state.editText}</Text>
+                                <Text style={{fontSize:theme.normalFontSize}}>录入方式:</Text>
+                                <Text style={{ color: 'green', paddingLeft: 6,fontSize:theme.normalFontSize}}>{this.state.editText}</Text>
                             </View>
 
                             <View style={styles.lrfsTipBtns}>
@@ -268,7 +267,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'red'
     },
     btnTextStyle: {
-        fontSize:setSpText(theme.normalFontSize),
+        fontSize:theme.normalFontSize,
         color: '#fff'
     },
     addBtnStyle: {
@@ -285,7 +284,7 @@ const styles = StyleSheet.create({
 
     },
     dayItemLeftTip: {
-        fontSize:setSpText(theme.normalFontSize),
+        fontSize:theme.normalFontSize,
         flex:1,
     },
     dayItemText: {
@@ -297,23 +296,23 @@ const styles = StyleSheet.create({
         backgroundColor: '#eee',
         marginVertical:6,
         paddingLeft:16,
-        fontSize:setSpText(theme.normalFontSize)
+        fontSize:theme.normalFontSize
     },
     // dayItemRemark: {
     //     alignItems:'flex-start'
     // },
     remarkTip: {
-        fontSize:setSpText(theme.normalFontSize)
+        fontSize:theme.normalFontSize
     },
     remarkText: {
-        fontSize:setSpText(12)
+        fontSize:theme.normalFontSize
     },
     remarkTextInput: {
         flex:1,
         backgroundColor: '#eee',
         alignItems:'stretch',
         marginVertical:4,
-        fontSize:setSpText(12)
+        fontSize:theme.normalFontSize
     },
     saveBtnGroup: {
         padding: 8,
@@ -330,6 +329,6 @@ const styles = StyleSheet.create({
     },
     saveBtnTextStyle: {
         color: '#fff',
-        fontSize:setSpText(theme.normalFontSize)
+        fontSize:theme.normalFontSize
     },
 });

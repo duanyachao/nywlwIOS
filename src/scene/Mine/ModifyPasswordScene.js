@@ -100,10 +100,10 @@ class ModifyPasswordScene extends Component {
         return (
             <View style={styles.container}>
                 <View style={styles.modifyPasswordWrapper}>
-                    <View style={styles.item}>
+                    <View style={[styles.item,{ borderBottomColor: (this.state.focusCurrent) ? theme.theme : '#ccc' }]}>
                         <Text style={styles.tipText}>当前密码:</Text>
                         <TextInput
-                            style={[styles.textInputWrapper, { borderBottomColor: (this.state.focusCurrent) ? theme.theme : '#ccc' }]}
+                            style={[styles.textInputWrapper]}
                             ref='current'
                             selectionColor={theme.theme}
                             secureTextEntry={true}
@@ -114,10 +114,10 @@ class ModifyPasswordScene extends Component {
                             onChangeText={(text) => this.setState({ currentPWD: text })}>
                         </TextInput>
                     </View>
-                    <View style={styles.item}>
+                    <View style={[styles.item,{ borderBottomColor: (this.state.focusNewPWD) ? theme.theme : '#ccc' }]}>
                         <Text style={styles.tipText}>新密码:</Text>
                         <TextInput
-                            style={[styles.textInputWrapper, { borderBottomColor: (this.state.focusNewPWD) ? theme.theme : '#ccc' }]}
+                            style={styles.textInputWrapper}
                             ref='newPWD'
                             selectionColor={theme.theme}
                             secureTextEntry={true}
@@ -128,10 +128,10 @@ class ModifyPasswordScene extends Component {
                             onChangeText={(text) => this.setState({ newPWD: text })}>
                         </TextInput>
                     </View>
-                    <View style={styles.item}>
+                    <View style={[styles.item,{ borderBottomColor: (this.state.focusRenewPWD) ? theme.theme : '#ccc' }]}>
                         <Text style={styles.tipText}>确认新密码:</Text>
                         <TextInput
-                            style={[styles.textInputWrapper, { borderBottomColor: (this.state.focusRenewPWD) ? theme.theme : '#ccc' }]}
+                            style={styles.textInputWrapper}
                             ref='renewPWD'
                             selectionColor={theme.theme}
                             secureTextEntry={true}
@@ -164,13 +164,16 @@ const styles = StyleSheet.create({
         padding: 15
     },
     item: {
-        marginBottom: 8
+        marginBottom: 8,
+        borderBottomWidth:screen.onePixel
     },
     tipText: {
 
     },
     textInputWrapper: {
-        borderBottomWidth: screen.onePixel,
+        height:45,
+        borderBottomWidth: 2,
+        // backgroundColor:'red'
         // borderBottomColor:this.state.focusColor
     },
     btnStyle: {

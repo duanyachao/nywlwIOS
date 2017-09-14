@@ -3,10 +3,8 @@ import React, { Component } from 'react';
 import { Alert, View,PixelRatio, Text, StyleSheet, Switch, TouchableHighlight } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import api from '../../api';
-import { theme } from '../../components';
-import { screen } from '../../common';
+import { screen,theme } from '../../common';
 import { Network, toastShort } from '../../utils';
-import {setSpText,scaleSize} from '../../common/scale';
 // create a component
 export default class TaskItem extends Component {
     constructor(props) {
@@ -104,16 +102,16 @@ export default class TaskItem extends Component {
                         </View>
                         <View style={styles.taskItemLeftBottom}>
                             <View style={styles.taskTime}>
-                                <Icon name='clock-o' size={setSpText(22)} color={'green'}></Icon>
+                                <Icon name='clock-o' size={theme.iconSize} color={'green'}></Icon>
                                 <Text style={styles.taskItemLeftBottomText}>{taskItem.START_TIME}--{taskItem.END_TIME}</Text>
                             </View>
                             {(this.state.switchStatus) ?
                                 <View style={styles.taskIsEnd}>
-                                    <Icon name='clock-o' size={setSpText(22)} color={'red'}></Icon>
+                                    <Icon name='clock-o' size={theme.iconSize} color={'red'}></Icon>
                                     <Text style={styles.taskItemLeftBottomText}>{this.state.taskStatus}</Text>
                                 </View> :
                                 <View style={styles.taskIsEnd}>
-                                    <Icon name='check-circle' size={setSpText(22)} color={'green'}></Icon>
+                                    <Icon name='check-circle' size={theme.iconSize} color={'green'}></Icon>
                                     <Text style={styles.taskItemLeftBottomText}>{this.state.taskStatus}</Text>
                                 </View>}
 
@@ -141,7 +139,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: '#fff',
-        borderBottomWidth: screen.onePixel,
+        borderBottomWidth:screen.onePixel,
         borderBottomColor: '#f0f0f0',
     },
     taskItemLeft: {
@@ -164,10 +162,10 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     taskItemLeftTopText:{
-        fontSize:setSpText(14)
+        fontSize:theme.normalFontSize
     },
     taskItemLeftBottomText: {
-        fontSize:setSpText(14),
+        fontSize:theme.normalFontSize,
         paddingLeft: 6
     },
     taskItemRight: {

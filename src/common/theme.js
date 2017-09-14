@@ -1,21 +1,39 @@
 import {StyleSheet} from 'react-native';
 import screen from './screen'
 import {setSpText,scaleSize} from './scale';
+const normalFontSize=14;
+const iconSize=24;
+const warnImgSize=32;
+const userImgSize=48;
+const headerH=45;
+const tabIconsize=24;
+const tabFontSize=14;
+const warnFontSize=13;
+const warnLevelFontSize=11;
+const headerTitleSize=16;
 export default {
     theme: '#06C1AE',
     border: '#e0e0e0',
     background: '#f3f3f3',
-    tabIconsize:setSpText(24),
-    tabFontSize:setSpText(14),
+    tabIconsize:tabIconsize,
+    tabFontSize:tabFontSize,
     iconColor:'rgb(55,179,117)',
     nodata: {
         padding: 10,
         alignItems: 'center',
 
     },
-    pcikerTipIconSize:16,
-    pcikerRightIconSize:16,
-    normalFontSize:14
+    headerTitleSize:headerTitleSize,
+    warnFontSize:warnFontSize,
+    warnLevelFontSize:warnLevelFontSize,
+    iconSize:iconSize,
+    pcikerTipIconSize:iconSize,
+    pcikerRightIconSize:iconSize,
+    normalFontSize:normalFontSize,
+    warnImgSize:warnImgSize,
+    deviceImgSize:warnImgSize,
+    userImgSize:userImgSize,
+    headerH:headerH
 }
 export const pickerStyle=StyleSheet.create({
      container: {
@@ -34,7 +52,7 @@ export const pickerStyle=StyleSheet.create({
     },
     pickerTipText: {
         paddingLeft: 10,
-        fontSize:setSpText(14),
+        fontSize:normalFontSize,
         color: '#222'
     },
     picker: {
@@ -43,7 +61,7 @@ export const pickerStyle=StyleSheet.create({
         alignItems: 'center'
     },
     pickered: {
-        fontSize: setSpText(14),
+        fontSize: normalFontSize,
         color: '#8c8c8c',
         paddingRight:10
     },
@@ -78,7 +96,7 @@ export const rowStyle=StyleSheet.create({
     },
     itemTip: {
         paddingLeft: 10,
-        fontSize:setSpText(14)
+        fontSize:normalFontSize
     },
     myItemLeft: {
         flexDirection: 'row',

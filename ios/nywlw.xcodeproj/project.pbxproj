@@ -51,7 +51,6 @@
 		DB565D7BA71A40CBA4319B9B /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F13155294F244263A443CFF3 /* UserNotifications.framework */; };
 		DC312675482E41B7BA4539AB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5C2991EC9A44E3EB0F9D61C /* Security.framework */; };
 		EC9AB5B58B5E4650AF0B569A /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB61582CA5E44B9991058B3E /* CoreFoundation.framework */; };
-		FF72B1B81F639D25006E9876 /* Iconfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CDF83E9EF58F43DBB1D52328 /* Iconfont.ttf */; };
 		FF72B1B91F639D25006E9876 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9962824406084546AAFF4C33 /* Entypo.ttf */; };
 		FF72B1BA1F639D25006E9876 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4765DABAF6DA4C0DBD5D09B7 /* EvilIcons.ttf */; };
 		FF72B1BB1F639D25006E9876 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 79935C613F754E4B91295DDF /* FontAwesome.ttf */; };
@@ -351,7 +350,6 @@
 		BBF937A56FA5442BA7C81A96 /* libresolv.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
 		BE769FA34EF74E478EB3F56A /* CoreGraphics.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		C5C2991EC9A44E3EB0F9D61C /* Security.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		CDF83E9EF58F43DBB1D52328 /* Iconfont.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Iconfont.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Iconfont.ttf"; sourceTree = "<group>"; };
 		D0DE7EA5278547DB8B0FFCF8 /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
 		D80F17283041491BBDA5C307 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		DC62FB6F4E0D452597B5482F /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
@@ -612,7 +610,6 @@
 		CA20759B923C4A8383E9B446 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				CDF83E9EF58F43DBB1D52328 /* Iconfont.ttf */,
 				9962824406084546AAFF4C33 /* Entypo.ttf */,
 				4765DABAF6DA4C0DBD5D09B7 /* EvilIcons.ttf */,
 				79935C613F754E4B91295DDF /* FontAwesome.ttf */,
@@ -1105,7 +1102,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FF72B1B81F639D25006E9876 /* Iconfont.ttf in Resources */,
 				FF72B1B91F639D25006E9876 /* Entypo.ttf in Resources */,
 				FF72B1BA1F639D25006E9876 /* EvilIcons.ttf in Resources */,
 				FF72B1BB1F639D25006E9876 /* FontAwesome.ttf in Resources */,

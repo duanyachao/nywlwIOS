@@ -13,12 +13,11 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Spinner from 'react-native-loading-spinner-overlay';
-import { screen, system } from '../../common';
+import { screen, system,theme } from '../../common';
 import { Button } from '../../components';
 import api from '../../api';
 import { Network, toastShort } from '../../utils';
 import { NavigationActions } from 'react-navigation';
-import {setSpText,scaleSize} from '../../common/scale';
 // create a component
 export default class LoginScene extends Component {
     constructor(props) {
@@ -147,7 +146,7 @@ export default class LoginScene extends Component {
                 <View style={styles.loginForm}>
                     <View style={styles.textInput}>
                         <View style={styles.iconWrapper}>
-                            <Icon name='user' size={setSpText(24)} color="#fff"></Icon>
+                            <Icon name='user' size={theme.iconSize} color="#fff"></Icon>
                         </View>
                         <TextInput style={styles.textStyle}
                             placeholder="账号/用户名"
@@ -160,7 +159,7 @@ export default class LoginScene extends Component {
                     </View>
                     <View style={[styles.textInput]}>
                         <View style={styles.iconWrapper}>
-                            <Icon name='lock' size={24} color="#fff"></Icon>
+                            <Icon name='lock' size={theme.iconSize} color="#fff"></Icon>
                         </View>
                         <TextInput style={styles.textStyle}
                             placeholder="密码"
@@ -174,7 +173,7 @@ export default class LoginScene extends Component {
                     </View>
                     <View style={[styles.textInput]}>
                         <View style={styles.iconWrapper}>
-                            <Icon name='mobile' size={24} color="#fff"></Icon>
+                            <Icon name='mobile' size={theme.iconSize} color="#fff"></Icon>
                         </View>
                         <TextInput style={styles.textStyle}
                             placeholder="手机号"
@@ -230,11 +229,13 @@ const styles = StyleSheet.create({
     textStyle: {
         flex: 1,
         color: '#fff',
-        fontSize:setSpText(14)
+        fontSize:theme.normalFontSize
 
     },
     btnTextStyle: {
         color: 'rgb(55,179,117)',
+        fontSize:theme.normalFontSize
+        
 
     },
     btnStyle: {

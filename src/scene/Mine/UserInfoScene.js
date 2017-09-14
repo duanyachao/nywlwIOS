@@ -82,37 +82,29 @@ class UserInfoScene extends Component {
         return (
             <View style={styles.container}>
                 <View style={[rowStyle.mineWrapper, { marginTop: 10 }]}>
-                    <View style={[rowStyle.myItem, { marginRight: 20 }]}>
-                        <View style={rowStyle.myItemLeft}>
-                            <Text style={rowStyle.itemTip}>姓    名</Text>
-                        </View>
-                        <View style={[rowStyle.myItemRight]}>
+                    <View style={[rowStyle.myItem]}>
+                            <Text style={[rowStyle.itemTip,styles.rowTip]}>姓    名</Text>
                             <TextInput
                                 editable={this.state.editable}
                                 ref='trueName'
-                                underlineColorAndroid="transparent"
-                                style={{ flex: 1 }}
+                                style={[styles.userInfoTextInput,{color:(this.state.editable)?'#000':'#ccc'}]}
                                 defaultValue={this.state.realName}
                                 onChangeText={(text) => this.setState({ realName: text })}>
                             </TextInput>
-                        </View>
+
                     </View>
                     <View style={[rowStyle.myItem, rowStyle.noBorerBottom]}>
-                        <View style={rowStyle.myItemLeft}>
-                            <Text style={rowStyle.itemTip}>手机号</Text>
-                        </View>
-                        <View style={rowStyle.myItemRight}>
+                        <Text style={[rowStyle.itemTip,styles.rowTip]}>手机号</Text>
                             <TextInput
                                 editable={this.state.editable}
                                 ref='phoneNum'
                                 keyboardType='numeric'
                                 maxLength={11}
                                 underlineColorAndroid="transparent"
-                                style={{ flex: 1 }}
+                                style={[styles.userInfoTextInput,{color:(this.state.editable)?'#000':'#ccc'}]}
                                 defaultValue={this.state.phoneNum}
                                 onChangeText={(text) => this.setState({ phoneNum: text })}>
                             </TextInput>
-                        </View>
                     </View>
                 </View>
                 {(this.state.editable) ?
@@ -153,6 +145,13 @@ class UserInfoScene extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+    },
+    rowTip:{
+        marginRight:6
+    },
+    userInfoTextInput:{
+        flex:1,
+        
     },
     btnWrapper: {
         marginTop: 10,

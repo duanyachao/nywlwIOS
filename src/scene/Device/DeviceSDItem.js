@@ -12,7 +12,6 @@ import api from '../../api';
 import { Network, toastShort } from '../../utils';
 import{DeviceIcon} from '../../common/Normal';
 import { theme,screen } from '../../common';
-import {setSpText,scaleSize} from '../../common/scale';
 const styles=StyleSheet.create({
     itemStyle:{
         height:46,
@@ -31,12 +30,12 @@ const styles=StyleSheet.create({
 
     },
     deviceIcon:{
-        width:setSpText(32),
-        height:setSpText(32),
+        width:theme.deviceImgSize,
+        height:theme.deviceImgSize,
         
     },
     deviceNameText:{
-        fontSize:setSpText(theme.normalFontSize),
+        fontSize:theme.normalFontSize,
         paddingLeft:10,
     },
     deviceStatus:{
@@ -46,7 +45,7 @@ const styles=StyleSheet.create({
     },
     deviceStatusText:{
         paddingRight:10,
-        fontSize:setSpText(theme.normalFontSize),    
+        fontSize:theme.normalFontSize,    
     }
 })
 export default class DeviceItem extends Component{
@@ -91,7 +90,7 @@ export default class DeviceItem extends Component{
     componentWillReceiveProps(nextProps){
         if(nextProps.rowData!==this.props.rowData){
             let status=nextProps.rowData.VALUE;
-            console.info(status)
+            // console.info(status)
             this.changeStatus(status); 
         }
         return true
@@ -120,8 +119,8 @@ export default class DeviceItem extends Component{
                     };
                     let params={"deviceId": rowData.DEVICE_ID,"regionId": orgId,"status": action};
                     Network.postJson(api.HOST+api.DEVICES_UPDATE,params, headers,(res)=>{
-                        console.info(action)
-                        console.info(res)
+                        // console.info(action)
+                        // console.info(res)
                         if(res.meta.success){
                         this.setState({
                             SwitchIsOn:!this.state.SwitchIsOn,

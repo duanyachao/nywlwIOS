@@ -54,8 +54,8 @@ export default class Area extends Component {
                 <View style={styles.areaListItem} key={rowId}>
                     <Text style={styles.areaListItemText}>{rowData.orgName}</Text>
                     <View style={styles.gxIcon}>
-                        {(this.state.selectIndex==rowId) ?  <Icon name='check-circle' size={theme.pcikerTipIconSize} color={theme.iconColor}></Icon>:
-                        <Icon name='circle-thin' size={theme.pcikerTipIconSize} color={"#eee"}></Icon>
+                        {(this.state.selectIndex==rowId) ?  <Icon name='check-circle' size={scaleSize(theme.pcikerTipIconSize)} color={theme.iconColor}></Icon>:
+                        <Icon name='circle-thin' size={scaleSize(theme.pcikerTipIconSize)} color={"#eee"}></Icon>
                     }
                     </View>
                 </View>
@@ -77,7 +77,7 @@ export default class Area extends Component {
         return (
             <View style={pickerStyle.container}>
                 <View style={pickerStyle.pickerTip}>
-                    <Icon name='map-signs' size={setSpText(theme.pcikerTipIconSize)} color={theme.iconColor}></Icon>
+                    <Icon name='map-signs' size={theme.pcikerTipIconSize} color={theme.iconColor}></Icon>
                     <Text style={pickerStyle.pickerTipText}>生产区域</Text>
                 </View>
                 {this.state.dataSource ?
@@ -86,7 +86,7 @@ export default class Area extends Component {
                         onPress={() => this.setState({ modalVisible: !this.state.modalVisible })}>
                         <View style={pickerStyle.picker}>
                             <Text style={pickerStyle.pickered}>{this.state.orgName}</Text>
-                            <Icon name='angle-right' size={setSpText(theme.pcikerRightIconSize)} color='#8c8c8c'></Icon>
+                            <Icon name='angle-right' size={theme.pcikerRightIconSize} color='#8c8c8c'></Icon>
                         </View>
                     </TouchableHighlight>
                     : <View></View>
@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
         paddingRight: 14
     },
     areaListItemText: {
-        fontSize:setSpText(14),
+        fontSize:theme.normalFontSize,
         color: '#000'
     }
 });

@@ -12,7 +12,6 @@ import { theme,screen } from '../../common';
 import { Network, toastShort } from '../../utils';
 import api from '../../api';
 import WarnInfoList from './WarnInfoList';
-import {setSpText,scaleSize} from '../../common/scale';
 // create a component
 const pageSize = 10;
 export default class WarnScene extends Component {

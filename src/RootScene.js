@@ -30,7 +30,6 @@ import ModifyPasswordScene from './scene/Mine/ModifyPasswordScene'
 import VideoScene from './scene/Video/VideoScene'
 // import TabScene from './scene/TabScene'
 import JPushModule from 'jpush-react-native';
-import {setSpText,scaleSize} from './common/scale';
 export default class RootScene extends Component {
     constructor(props) {
         super(props)
@@ -41,64 +40,64 @@ export default class RootScene extends Component {
             currentRoute:null
         }
     }
-    // componentDidMount() {
+    componentDidMount() {
 
 
     //     // 在收到点击事件之前调用此接口
-    //     JPushModule.notifyJSDidLoad((resultCode) => {
-    //         if (resultCode === 0) {
-    //         }
-    //     });
-    //     this.loginListener = DeviceEventEmitter.addListener('loginSuccess', (msg) => {
-    //         console.info(msg)
-    //         JPushModule.setAlias(msg, (map) => {
-    //             if (map.errorCode === 0) {
-    //                 // console.log("set alias succeed");
-    //             } else {
-    //                 // console.log("set alias failed, errorCode: " + map.errorCode);
-    //             }
-    //         });
+        // JPushModule.notifyJSDidLoad((resultCode) => {
+        //     if (resultCode === 0) {
+        //     }
+        // });
+        // this.loginListener = DeviceEventEmitter.addListener('loginSuccess', (msg) => {
+        //     // console.info(msg)
+        //     JPushModule.setAlias(msg, (map) => {
+        //         if (map.errorCode === 0) {
+        //             // console.log("set alias succeed");
+        //         } else {
+        //             // console.log("set alias failed, errorCode: " + map.errorCode);
+        //         }
+        //     });
 
-    //     })
+        // })
     //     JPushModule.getInfo((map) => {
     //         // console.info(map)
     //     });
 
-    //     JPushModule.addReceiveNotificationListener((message) => {
-    //         let msgType = eval('(' + message.extras + ')');
-    //         this.setState({
-    //             message: message.alertContent,
-    //             msgType: msgType.type
-    //         })
-    //         if(!this.state.isOpen){
-    //             Alert.alert(
-    //                 (this.state.msgType == 'alarm') ? '报警提示' : '任务提示',
-    //                 this.state.message,
-    //                 [
-    //                     // {
-    //                     //     text: '查看详情', onPress: () => {
-    //                     //         let routeName=this.state.currentRoute;
-    //                     //         console.info(routeName)
-    //                     //         if (routeName) {
-    //                     //             this.refs.navigator.navigation.navigate('Msg', { 'title': '我的消息' });
-    //                     //         } else {
+        // JPushModule.addReceiveNotificationListener((message) => {
+        //     let msgType = eval('(' + message.extras + ')');
+        //     this.setState({
+        //         message: message.alertContent,
+        //         msgType: msgType.type
+        //     })
+        //     if(!this.state.isOpen){
+        //         Alert.alert(
+        //             (this.state.msgType == 'alarm') ? '报警提示' : '任务提示',
+        //             this.state.message,
+        //             [
+        //                 // {
+        //                 //     text: '查看详情', onPress: () => {
+        //                 //         let routeName=this.state.currentRoute;
+        //                 //         console.info(routeName)
+        //                 //         if (routeName) {
+        //                 //             this.refs.navigator.navigation.navigate('Msg', { 'title': '我的消息' });
+        //                 //         } else {
                                     
-    //                     //         }
-    //                     //     }
-    //                     // }
-    //                     {
-    //                         text: '确定', onPress: () => {
+        //                 //         }
+        //                 //     }
+        //                 // }
+        //                 {
+        //                     text: '确定', onPress: () => {
                                 
-    //                         }
-    //                     }
+        //                     }
+        //                 }
     
-    //                 ],
-    //                 { cancelable: false }
-    //             )
-    //         }
-    //         // console.info(message)
-    //         DeviceEventEmitter.emit('receiveMsg', message)
-    //     })
+        //             ],
+        //             { cancelable: false }
+        //         )
+        //     }
+        //     // console.info(message)
+        //     DeviceEventEmitter.emit('receiveMsg', message)
+        // })
     //     // JPushModule.addReceiveOpenNotificationListener((message) => {
     //     //     if (this.props.navigation === undefined) {
     //     //         // 启动主页面，初始化 navigation
@@ -114,7 +113,7 @@ export default class RootScene extends Component {
     //     //     // DeviceEventEmitter.emit('msg');        
     //     // });
 
-    // }
+    }
     componentWillUnmount() {
         this.loginListener.remove();
         JPushModule.removeReceiveCustomMsgListener();
@@ -182,7 +181,7 @@ const TabScene = TabNavigator({
             activeTintColor: theme.theme,
             inactiveTintColor: '#979797',
             labelStyle: {
-                fontSize: setSpText(theme.tabFontSize),
+                fontSize: theme.tabFontSize,
             },
             style: { backgroundColor: '#fff' },
         },
@@ -193,7 +192,7 @@ const TabOptions = (tabBarTitle, navigation, iconName, isheader, navTitle) => {
     const tabBarIcon = (({tintColor, focused}) => {
         return (
             <Icon name={iconName}
-                size={setSpText(theme.tabIconsize)}
+                size={theme.tabIconsize}
                 style={{ color: tintColor }}>
             </Icon>
         )
@@ -205,14 +204,14 @@ const TabOptions = (tabBarTitle, navigation, iconName, isheader, navTitle) => {
 const StackOptions = ({navigation}) => {
     let {state, goBack} = navigation;
     const headerStyle = {
-        height: 45,
+        height: 60,
         flexDirection: 'row',
         backgroundColor: '#fff',
         borderBottomWidth: screen.onePixel,
         borderBottomColor: '#ccc'
     };
     const headerTitle = state.params.title;
-    const headerTitleStyle = { color: '#a9a9a9', fontSize: setSpText(16) }
+    const headerTitleStyle = { color: '#a9a9a9', fontSize:theme.headerTitleSize,alignItems:'center'}
     const headerBackTitle = false;
     const headerLeft =
         <Icon.Button

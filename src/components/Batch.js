@@ -75,8 +75,8 @@ export default class Bacth extends Component {
             pickerConfirmBtnText: '确定',
             pickerCancelBtnText:'取消',
             pickerTitleText:'选择批次',
-            pickerToolBarFontSize:setSpText(14),
-            pickerFontSize:setSpText(14),
+            pickerToolBarFontSize:theme.normalFontSize,
+            pickerFontSize:theme.normalFontSize,
             pickerData: batchLists,
             selectedValue:[(this.state.batchIndex)?batchLists[this.state.batchIndex]:batchLists[0]],
             onPickerConfirm: batch => {
@@ -105,7 +105,7 @@ export default class Bacth extends Component {
         return (
             <View style={pickerStyle.container}>
                 <View style={pickerStyle.pickerTip}>
-                    <Icon name='list' size={setSpText(theme.pcikerTipIconSize)} color={theme.iconColor}></Icon>
+                    <Icon name='list' size={theme.pcikerTipIconSize} color={theme.iconColor}></Icon>
                     <Text style={pickerStyle.pickerTipText}>生产批次</Text>
                 </View>
                 {(batchs && batchs.length !== 0) ?
@@ -114,7 +114,7 @@ export default class Bacth extends Component {
                         onPress={() => this.selectBtach()}>
                         <View style={pickerStyle.picker}>
                             <Text style={pickerStyle.pickered}>{batch}</Text>
-                            <Icon name='angle-right' size={setSpText(theme.pcikerRightIconSize)} color='#8c8c8c'></Icon>
+                            <Icon name='angle-right' size={theme.pcikerRightIconSize} color='#8c8c8c'></Icon>
                         </View>
                     </TouchableHighlight> : <View style={pickerStyle.nopicker}><Text style={pickerStyle.nopickerText}>暂无批次</Text></View>}
 
