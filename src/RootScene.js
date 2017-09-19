@@ -61,8 +61,8 @@ export default class RootScene extends Component {
                 JPushModule.getBadge((badge) => {
                     this.setState({
                         badge:badge
-                    })    
-                });    
+                    })
+                });
             } else {
                 
             }
@@ -102,9 +102,11 @@ export default class RootScene extends Component {
         })
 
             JPushModule.addReceiveOpenNotificationListener((message) => {
-                
+                // JPushModule.setBadge(5, (success) => {
+                //     console.log(success)
+                //   });
                 JPushModule.setBadge(this.state.badge--, (success) => {
-                    alert(success)        
+                    // alert(success)        
                 });
                 // if (this.props.navigation === undefined) {
                 //     // 启动主页面，初始化 navigation
@@ -124,7 +126,6 @@ export default class RootScene extends Component {
     componentWillUnmount() {
         this.loginListener.remove();
         JPushModule.removeOpenNotificationLaunchAppListener();
-        JPushModule.removenetworkDidLoginListener();
     }
     render() {
         return (
