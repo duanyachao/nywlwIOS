@@ -63,13 +63,11 @@ export default class WarnInfoList extends Component {
     }
     componentDidMount() {
         this.requestWarnData()
-        // this.timer = setInterval(() => { this.requestWarnData() }, 300000);
         this.warnMsgListener=DeviceEventEmitter.addListener('receiveWarnMsg',(msg)=>{
             this.requestWarnData()    
         })
     }
     componentWillUnmount() {
-        // this.timer && clearInterval(this.timer);
         this.warnMsgListener.remove()
     }
     renderItem(item, i) {

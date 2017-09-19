@@ -54,8 +54,8 @@ export default class Area extends Component {
                 <View style={styles.areaListItem} key={rowId}>
                     <Text style={styles.areaListItemText}>{rowData.orgName}</Text>
                     <View style={styles.gxIcon}>
-                        {(this.state.selectIndex==rowId) ?  <Icon name='check-circle' size={scaleSize(theme.pcikerTipIconSize)} color={theme.iconColor}></Icon>:
-                        <Icon name='circle-thin' size={scaleSize(theme.pcikerTipIconSize)} color={"#eee"}></Icon>
+                        {(this.state.selectIndex==rowId) ?  <Icon name='check-circle' size={theme.iconSize} color={theme.iconColor}></Icon>:
+                        <Icon name='circle-thin' size={theme.iconSize} color={"#eee"}></Icon>
                     }
                     </View>
                 </View>

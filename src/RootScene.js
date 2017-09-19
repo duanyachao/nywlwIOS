@@ -37,101 +37,109 @@ export default class RootScene extends Component {
             message: null,
             msgType: null,
             isOpen: false,
-            currentRoute:null
+            currentRoute: null,
+            badge:null
         }
     }
     componentDidMount() {
-
-
-    //     // 在收到点击事件之前调用此接口
-        // JPushModule.notifyJSDidLoad((resultCode) => {
-        //     if (resultCode === 0) {
-        //     }
+        // JPushModule.getRegistrationID((callback)=>{
+        //     alert(callback)
+        // })
+        // JPushModule.getAlias((result)=> {
+        // 	Alert.alert(JSON.stringify(result))
+        // })
+        // JPushModule.getInfo((map) => {
+        //     console.info(map)
         // });
-        // this.loginListener = DeviceEventEmitter.addListener('loginSuccess', (msg) => {
-        //     // console.info(msg)
-        //     JPushModule.setAlias(msg, (map) => {
-        //         if (map.errorCode === 0) {
-        //             // console.log("set alias succeed");
-        //         } else {
-        //             // console.log("set alias failed, errorCode: " + map.errorCode);
-        //         }
-        //     });
+        this.loginListener = DeviceEventEmitter.addListener('loginSuccess', (msg) => {
+            JPushModule.setAlias(msg, () => {
+            }, () => {
+            })
+        })
+        JPushModule.addReceiveNotificationListener((message) => {
+            if (system.isIOS) {
+                JPushModule.getBadge((badge) => {
+                    this.setState({
+                        badge:badge
+                    })    
+                });    
+            } else {
+                
+            }
+            // alert(JSON.stringify(message))
+            DeviceEventEmitter.emit('receiveWarnMsg', message)
+            this.setState({
+                message: message.aps.alert,
+                msgType: message.type
+            })
+            if(!this.state.isOpen){
+                Alert.alert(
+                    (this.state.msgType == 'alarm') ? '报警提示' : '任务提示',
+                    this.state.message,
+                    [
+                        // {
+                        //     text: '查看详情', onPress: () => {
+                        //         let routeName=this.state.currentRoute;
+                        //         console.info(routeName)
+                        //         if (routeName) {
+                        //             this.refs.navigator.navigation.navigate('Msg', { 'title': '我的消息' });
+                        //         } else {
 
-        // })
-    //     JPushModule.getInfo((map) => {
-    //         // console.info(map)
-    //     });
+                        //         }
+                        //     }
+                        // }
+                        {
+                            text: '确定', onPress: () => {
 
-        // JPushModule.addReceiveNotificationListener((message) => {
-        //     let msgType = eval('(' + message.extras + ')');
-        //     this.setState({
-        //         message: message.alertContent,
-        //         msgType: msgType.type
-        //     })
-        //     if(!this.state.isOpen){
-        //         Alert.alert(
-        //             (this.state.msgType == 'alarm') ? '报警提示' : '任务提示',
-        //             this.state.message,
-        //             [
-        //                 // {
-        //                 //     text: '查看详情', onPress: () => {
-        //                 //         let routeName=this.state.currentRoute;
-        //                 //         console.info(routeName)
-        //                 //         if (routeName) {
-        //                 //             this.refs.navigator.navigation.navigate('Msg', { 'title': '我的消息' });
-        //                 //         } else {
-                                    
-        //                 //         }
-        //                 //     }
-        //                 // }
-        //                 {
-        //                     text: '确定', onPress: () => {
-                                
-        //                     }
-        //                 }
-    
-        //             ],
-        //             { cancelable: false }
-        //         )
-        //     }
-        //     // console.info(message)
-        //     DeviceEventEmitter.emit('receiveMsg', message)
-        // })
-    //     // JPushModule.addReceiveOpenNotificationListener((message) => {
-    //     //     if (this.props.navigation === undefined) {
-    //     //         // 启动主页面，初始化 navigation
-    //     //         // 保存跳转事件，初始化完成后跳转
-    //     //         // console.info(this.props.navigation)
-    //     //     } else {
-    //     //         // 跳转
-    //     //         InteractionManager.runAfterInteractions(() => {
-    //     //             this.props.navigation.navigate('Msg', { title: '我的消息' })
-    //     //         })
-    //     //     }
+                            }
+                        }
 
-    //     //     // DeviceEventEmitter.emit('msg');        
-    //     // });
+                    ],
+                    { cancelable: false }
+                )
+            }
+            
+        })
+
+            JPushModule.addReceiveOpenNotificationListener((message) => {
+                
+                JPushModule.setBadge(this.state.badge--, (success) => {
+                    alert(success)        
+                });
+                // if (this.props.navigation === undefined) {
+                //     // 启动主页面，初始化 navigation
+                //     // 保存跳转事件，初始化完成后跳转
+                //     // console.info(this.props.navigation)
+                // } else {
+                //     // 跳转
+                //     InteractionManager.runAfterInteractions(() => {
+                //         this.props.navigation.navigate('Msg', { title: '我的消息' })
+                //     })
+                // }
+
+                // DeviceEventEmitter.emit('msg');        
+            });
 
     }
     componentWillUnmount() {
         this.loginListener.remove();
-        JPushModule.removeReceiveCustomMsgListener();
-        JPushModule.removeReceiveNotificationListener();
+        JPushModule.removeOpenNotificationLaunchAppListener();
+        JPushModule.removenetworkDidLoginListener();
     }
     render() {
         return (
             <View style={{ flex: 1 }}>
                 <StatusBar
                     barStyle='default'
-                    ></StatusBar>
-                <Navigator 
-                ref='navigator' 
-                onNavigationStateChange={
-                    (prevState, currentState,action) => {this.setState({
-                        currentRoute:action
-                    })
-                }}></Navigator>
+                ></StatusBar>
+                <Navigator
+                    ref='navigator'
+                    onNavigationStateChange={
+                        (prevState, currentState, action) => {
+                            this.setState({
+                                currentRoute: action
+                            })
+                        }}></Navigator>
             </View>
         );
     }
@@ -140,19 +148,19 @@ export default class RootScene extends Component {
 const TabScene = TabNavigator({
     Warn: {
         screen: WarnScene,
-        navigationOptions: ({navigation}) => TabOptions('报警', navigation, 'warning', true, '报警信息')
+        navigationOptions: ({ navigation }) => TabOptions('报警', navigation, 'warning', true, '报警信息')
     },
     Task: {
         screen: TaskScene,
-        navigationOptions: ({navigation}) => TabOptions('任务', navigation, 'tasks', true, '任务管理')
+        navigationOptions: ({ navigation }) => TabOptions('任务', navigation, 'tasks', true, '任务管理')
     },
     Product: {
         screen: ProductScene,
-        navigationOptions: ({navigation}) => TabOptions('生产', navigation, 'product-hunt', true, '生产管理')
+        navigationOptions: ({ navigation }) => TabOptions('生产', navigation, 'product-hunt', true, '生产管理')
     },
     Device: {
         screen: DeviceScene,
-        navigationOptions: ({navigation}) => TabOptions('设备', navigation, 'sliders', true, '设备管理')
+        navigationOptions: ({ navigation }) => TabOptions('设备', navigation, 'sliders', true, '设备管理')
     },
     // Ebusiness: {
     //     screen: EbusinessScene,
@@ -160,11 +168,11 @@ const TabScene = TabNavigator({
     // },
     Video: {
         screen: VideoScene,
-        navigationOptions: ({navigation}) => TabOptions('监控', navigation, 'video-camera', true, '视频监控')
+        navigationOptions: ({ navigation }) => TabOptions('监控', navigation, 'video-camera', true, '视频监控')
     },
     Mine: {
         screen: MineScene,
-        navigationOptions: ({navigation}) => TabOptions('我的', navigation, 'user', false, '')
+        navigationOptions: ({ navigation }) => TabOptions('我的', navigation, 'user', false, '')
     }
 },
     {
@@ -189,7 +197,7 @@ const TabScene = TabNavigator({
 );
 const TabOptions = (tabBarTitle, navigation, iconName, isheader, navTitle) => {
     const tabBarLabel = tabBarTitle;
-    const tabBarIcon = (({tintColor, focused}) => {
+    const tabBarIcon = (({ tintColor, focused }) => {
         return (
             <Icon name={iconName}
                 size={theme.tabIconsize}
@@ -201,8 +209,8 @@ const TabOptions = (tabBarTitle, navigation, iconName, isheader, navTitle) => {
     const header = (isheader) ? <Header title={headerTitle} navigation={navigation}></Header> : null
     return { tabBarLabel, tabBarIcon, header, headerTitle };
 };
-const StackOptions = ({navigation}) => {
-    let {state, goBack} = navigation;
+const StackOptions = ({ navigation }) => {
+    let { state, goBack } = navigation;
     const headerStyle = {
         height: 60,
         flexDirection: 'row',
@@ -211,7 +219,7 @@ const StackOptions = ({navigation}) => {
         borderBottomColor: '#ccc'
     };
     const headerTitle = state.params.title;
-    const headerTitleStyle = { color: '#a9a9a9', fontSize:theme.headerTitleSize,alignItems:'center'}
+    const headerTitleStyle = { color: '#a9a9a9', fontSize: theme.headerTitleSize, alignItems: 'center' }
     const headerBackTitle = false;
     const headerLeft =
         <Icon.Button
@@ -236,19 +244,19 @@ const Navigator = StackNavigator({
     Tab: { screen: TabScene },
     UserInfo: {
         screen: UserInfoScene,
-        navigationOptions: ({navigation}) => StackOptions({ navigation })
+        navigationOptions: ({ navigation }) => StackOptions({ navigation })
     },
     ModifyPassword: {
         screen: ModifyPasswordScene,
-        navigationOptions: ({navigation}) => StackOptions({ navigation })
+        navigationOptions: ({ navigation }) => StackOptions({ navigation })
     },
     Myprofit: {
         screen: MyprofitScene,
-        navigationOptions: ({navigation}) => StackOptions({ navigation })
+        navigationOptions: ({ navigation }) => StackOptions({ navigation })
     },
     Msg: {
         screen: MsgScene,
-        navigationOptions: ({navigation}) => StackOptions({ navigation })
+        navigationOptions: ({ navigation }) => StackOptions({ navigation })
     }
 
 },

@@ -48,7 +48,7 @@
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		89C7B3A544A8431A94EE8A52 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC4EA007E1404ECD97E33E3A /* CoreTelephony.framework */; };
 		D4D2B93E76424689AD5EF33A /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AAAF35DC5E804CA5A0D0B525 /* libz.tbd */; };
-		DB565D7BA71A40CBA4319B9B /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F13155294F244263A443CFF3 /* UserNotifications.framework */; };
+		DB565D7BA71A40CBA4319B9B /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F13155294F244263A443CFF3 /* UserNotifications.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		DC312675482E41B7BA4539AB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5C2991EC9A44E3EB0F9D61C /* Security.framework */; };
 		EC9AB5B58B5E4650AF0B569A /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB61582CA5E44B9991058B3E /* CoreFoundation.framework */; };
 		FF72B1B91F639D25006E9876 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9962824406084546AAFF4C33 /* Entypo.ttf */; };
@@ -356,6 +356,9 @@
 		F13155294F244263A443CFF3 /* UserNotifications.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		FB8099375A7A4371A08EE1EA /* libRCTVideo.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTVideo.a; sourceTree = "<group>"; };
 		FD54E5038C4745D297F9A69D /* libRCTJCoreModule.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTJCoreModule.a; sourceTree = "<group>"; };
+		FF8D09951F6B5D9700740A92 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = assets; path = bundle/assets; sourceTree = "<group>"; };
+		FF8D09961F6B5D9700740A92 /* index.ios.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = index.ios.jsbundle; path = bundle/index.ios.jsbundle; sourceTree = "<group>"; };
+		FF927A741F6A309C0040DB9E /* nywlw.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = nywlw.entitlements; path = nywlw/nywlw.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -506,6 +509,9 @@
 		13B07FAE1A68108700A75B9A /* nywlw */ = {
 			isa = PBXGroup;
 			children = (
+				FF8D09951F6B5D9700740A92 /* assets */,
+				FF8D09961F6B5D9700740A92 /* index.ios.jsbundle */,
+				FF927A741F6A309C0040DB9E /* nywlw.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -770,7 +776,18 @@
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = F64RCU68C3;
+						ProvisioningStyle = Automatic;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
+					};
+					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = F64RCU68C3;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -1233,6 +1250,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = F64RCU68C3;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -1259,6 +1278,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/nywlw.app/nywlw";
 			};
 			name = Debug;
@@ -1267,7 +1287,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = F64RCU68C3;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)..\node_modules\neact-native-pickeriosRCTBEEPickerManager",
@@ -1290,6 +1312,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/nywlw.app/nywlw";
 			};
 			name = Release;
@@ -1298,8 +1321,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = nywlw/nywlw.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
+				DEVELOPMENT_TEAM = F64RCU68C3;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)..",
@@ -1322,8 +1348,10 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yfkj.Nywlw;
 				PRODUCT_NAME = nywlw;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1332,7 +1360,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = nywlw/nywlw.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = F64RCU68C3;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)..",
@@ -1355,8 +1386,10 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yfkj.Nywlw;
 				PRODUCT_NAME = nywlw;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -1532,6 +1565,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
