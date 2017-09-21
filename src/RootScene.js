@@ -57,24 +57,25 @@ export default class RootScene extends Component {
             })
         })
         JPushModule.addReceiveNotificationListener((message) => {
-            if (system.isIOS) {
-                JPushModule.getBadge((badge) => {
-                    this.setState({
-                        badge:badge
-                    })
-                });
-            } else {
+            // if (system.isIOS) {
+            //     JPushModule.getBadge((badge) => {
+            //         // badge=++badge;
+            //         this.setState({
+            //             badge:badge
+            //         })
+            //     });
+            // } else {
                 
-            }
+            // }
             // alert(JSON.stringify(message))
             DeviceEventEmitter.emit('receiveWarnMsg', message)
             this.setState({
                 message: message.aps.alert,
                 msgType: message.type
             })
-            if(!this.state.isOpen){
+            if(!this.state.isOpen && this.state.msgType == 'alarm'){
                 Alert.alert(
-                    (this.state.msgType == 'alarm') ? '报警提示' : '任务提示',
+                    '报警提示',
                     this.state.message,
                     [
                         // {
@@ -102,11 +103,8 @@ export default class RootScene extends Component {
         })
 
             JPushModule.addReceiveOpenNotificationListener((message) => {
-                // JPushModule.setBadge(5, (success) => {
-                //     console.log(success)
-                //   });
-                JPushModule.setBadge(this.state.badge--, (success) => {
-                    // alert(success)        
+                JPushModule.setBadge(message.badge-1, (success) => {
+     
                 });
                 // if (this.props.navigation === undefined) {
                 //     // 启动主页面，初始化 navigation

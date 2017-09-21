@@ -15,7 +15,7 @@ export default class ProductTotal extends Component {
                     <View style={styles.totalItemStyle}>
                         <View style={styles.totalItemLeftStyle}>
                             <Icon name='list' size={theme.pcikerTipIconSize} color={theme.iconColor}></Icon>
-                            <Text style={styles.totalItemLeftTextStyle}>进鸡总数</Text>
+                            <Text style={styles.totalItemLeftTextStyle}>进栏总数</Text>
                         </View>
                         <View style={styles.totalItemRightStyle}>
                             <Text style={styles.totalNumStyle}>{totalData.totalNumber}</Text>
