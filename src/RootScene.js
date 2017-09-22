@@ -238,7 +238,7 @@ const StackOptions = ({ navigation }) => {
 };
 
 const Navigator = StackNavigator({
-    Splash: { screen: SplashScene },
+    // Splash: { screen: SplashScene },
     Login: { screen: LoginScene },
     Tab: { screen: TabScene },
     UserInfo: {

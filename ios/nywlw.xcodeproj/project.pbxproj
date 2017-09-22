@@ -20,7 +20,6 @@
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
 		139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
-		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
@@ -51,6 +50,7 @@
 		DB565D7BA71A40CBA4319B9B /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F13155294F244263A443CFF3 /* UserNotifications.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		DC312675482E41B7BA4539AB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5C2991EC9A44E3EB0F9D61C /* Security.framework */; };
 		EC9AB5B58B5E4650AF0B569A /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB61582CA5E44B9991058B3E /* CoreFoundation.framework */; };
+		FF19D28B1F7494BB007D2D5B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		FF72B1B91F639D25006E9876 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9962824406084546AAFF4C33 /* Entypo.ttf */; };
 		FF72B1BA1F639D25006E9876 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4765DABAF6DA4C0DBD5D09B7 /* EvilIcons.ttf */; };
 		FF72B1BB1F639D25006E9876 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 79935C613F754E4B91295DDF /* FontAwesome.ttf */; };
@@ -1128,10 +1128,10 @@
 				FF72B1BF1F639D25006E9876 /* MaterialCommunityIcons.ttf in Resources */,
 				FF72B1C01F639D25006E9876 /* MaterialIcons.ttf in Resources */,
 				FF72B1C11F639D25006E9876 /* Octicons.ttf in Resources */,
+				FF19D28B1F7494BB007D2D5B /* LaunchScreen.xib in Resources */,
 				FF72B1C21F639D25006E9876 /* SimpleLineIcons.ttf in Resources */,
 				FF72B1C31F639D25006E9876 /* Zocial.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
