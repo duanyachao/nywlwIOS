@@ -597,6 +597,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				CA20759B923C4A8383E9B446 /* Resources */,
 				E002157B1754430694E9C42A /* Frameworks */,
+				FF1B3DDE2379306400C17DFE /* Recovered References */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -647,6 +648,18 @@
 				BE769FA34EF74E478EB3F56A /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FF1B3DDE2379306400C17DFE /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				164967C4C25D4373ABCB5C6E /* libRCTBEEPickerManager.a */,
+				DC62FB6F4E0D452597B5482F /* libRNVectorIcons.a */,
+				2FBEC75223914730887F02D7 /* libRCTJPushModule.a */,
+				FB8099375A7A4371A08EE1EA /* libRCTVideo.a */,
+				FD54E5038C4745D297F9A69D /* libRCTJCoreModule.a */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		FFE8145D1F5A64B20050AF72 /* Products */ = {
@@ -805,6 +818,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -1165,7 +1179,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/packager/react-native-xcode.sh";
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/packager/react-native-xcode.sh\n";
 		};
 		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
 			isa = PBXShellScriptBuildPhase;

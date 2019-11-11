@@ -27,6 +27,7 @@ import DevicesConfScene from './scene/Mine/devicesConf/DevicesConfScene'
 import MsgScene from './scene/Mine/MsgScene'
 import ModifyPasswordScene from './scene/Mine/ModifyPasswordScene'
 import VideoScene from './scene/Video/VideoScene'
+import JPushModule from 'jpush-react-native';
 export default class RootScene extends Component {
     constructor(props) {
         super(props)
@@ -58,11 +59,83 @@ export default class RootScene extends Component {
         if (system.isAndroid) {
             BackHandler.addEventListener('hardwareBackPress', this.onBackAndroid);
         }
+
+        // 在收到点击事件之前调用此接口
+        JPushModule.notifyJSDidLoad((resultCode) => {
+            if (resultCode === 0) {
+            }
+        });
+        this.loginListener = DeviceEventEmitter.addListener('loginSuccess', (msg) => {
+            JPushModule.setAlias(msg, (map) => {
+                if (map.errorCode === 0) {
+                    // alert("set alias succeed");
+                } else {
+                    // alert("set alias failed, errorCode: " + map.errorCode);
+                }
+            });
+
+        })
+        JPushModule.getInfo((map) => {
+            // console.info(map)
+        });
+
+        JPushModule.addReceiveNotificationListener((message) => {
+            DeviceEventEmitter.emit('receiveWarnMsg', message)
+            let msgType = eval('(' + message.extras + ')');
+            this.setState({
+                message: message.alertContent,
+                msgType: msgType.type
+            })
+            if(!this.state.isOpen){
+                Alert.alert(
+                    (this.state.msgType == 'alarm') ? '报警提示' : '任务提示',
+                    this.state.message,
+                    [
+                        // {
+                        //     text: '查看详情', onPress: () => {
+                        //         let routeName=this.state.currentRoute;
+                        //         console.info(routeName)
+                        //         if (routeName) {
+                        //             this.refs.navigator.navigation.navigate('Msg', { 'title': '我的消息' });
+                        //         } else {
+                                    
+                        //         }
+                        //     }
+                        // }
+                        {
+                            text: '确定', onPress: () => {
+                                
+                            }
+                        }
+    
+                    ],
+                    { cancelable: false }
+                )
+            }            
+        })
+        // JPushModule.addReceiveOpenNotificationListener((message) => {
+        //     if (this.props.navigation === undefined) {
+        //         // 启动主页面，初始化 navigation
+        //         // 保存跳转事件，初始化完成后跳转
+        //         // console.info(this.props.navigation)
+        //     } else {
+        //         // 跳转
+        //         InteractionManager.runAfterInteractions(() => {
+        //             this.props.navigation.navigate('Msg', { title: '我的消息' })
+        //         })
+        //     }
+
+        //     // DeviceEventEmitter.emit('msg');        
+        // });
+
     }
     componentWillUnmount() {
         if (system.isAndroid) {
             BackHandler.removeEventListener('hardwareBackPress', this.onBackAndroid);
         }
+        this.loginListener.remove();
+        JPushModule.removeReceiveCustomMsgListener();
+        JPushModule.removeReceiveNotificationListener();
     }
     render() {
         return (
