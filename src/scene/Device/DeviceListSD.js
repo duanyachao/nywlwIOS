@@ -3,7 +3,8 @@ import {
     StyleSheet,
     View,
     Text,
-    ListView
+    ListView,
+    RefreshControl
 } from 'react-native';
 import api from '../../api';
 import DeviceSDItem from './DeviceSDItem';
@@ -24,7 +25,8 @@ export default class DeviceListSD extends Component {
     componentDidMount() {
     }
     render() {
-        const {devices}=this.props;
+        const {devices,orgId,onfreash}=this.props;
+        // console.info(onfreash)
         return (
             <ListView
                 initialListSize={1}
@@ -33,6 +35,11 @@ export default class DeviceListSD extends Component {
                 style={styles.listViewStyle}
                 onEndReachedThreshold={10}
                 enableEmptySections={true}
+                refreshControl={
+                    <RefreshControl
+                        refreshing={false}
+                        onRefresh={(orgId)=>{onfreash(orgId)}}
+                    />}
             ></ListView>
         );
     }

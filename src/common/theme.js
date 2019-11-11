@@ -1,39 +1,33 @@
 import {StyleSheet} from 'react-native';
 import screen from './screen'
-import {setSpText,scaleSize} from './scale';
-const normalFontSize=14;
-const iconSize=24;
-const warnImgSize=32;
-const userImgSize=48;
-const headerH=45;
-const tabIconsize=24;
-const tabFontSize=14;
-const warnFontSize=13;
-const warnLevelFontSize=11;
-const headerTitleSize=16;
 export default {
+    colorG:'#bebebe',
+    colorLG:'#D3D3D3',
+    bgGray1:'#f5f5f5',
+    bgGray2:'#dcdcdc',
+    bgGray3:'#EEE9E9',
+    colorFirebrick:'#B22222',
+    colorTurquoise:'#40E0D0',
     theme: '#06C1AE',
     border: '#e0e0e0',
     background: '#f3f3f3',
-    tabIconsize:tabIconsize,
-    tabFontSize:tabFontSize,
+    tabIconsize:24,
+    tabFontSize:12,
     iconColor:'rgb(55,179,117)',
+    rpos:{
+        position:'relative',
+    },
+    noBorerBottom: {
+        borderBottomWidth: 0
+    },
     nodata: {
-        padding: 10,
+        display: 'flex',
+        flex: 1,
+        justifyContent: 'center',
         alignItems: 'center',
+        padding: 10,
 
     },
-    headerTitleSize:headerTitleSize,
-    warnFontSize:warnFontSize,
-    warnLevelFontSize:warnLevelFontSize,
-    iconSize:iconSize,
-    pcikerTipIconSize:iconSize,
-    pcikerRightIconSize:iconSize,
-    normalFontSize:normalFontSize,
-    warnImgSize:warnImgSize,
-    deviceImgSize:warnImgSize,
-    userImgSize:userImgSize,
-    headerH:headerH
 }
 export const pickerStyle=StyleSheet.create({
      container: {
@@ -52,7 +46,7 @@ export const pickerStyle=StyleSheet.create({
     },
     pickerTipText: {
         paddingLeft: 10,
-        fontSize:normalFontSize,
+        fontSize: 14,
         color: '#222'
     },
     picker: {
@@ -61,7 +55,7 @@ export const pickerStyle=StyleSheet.create({
         alignItems: 'center'
     },
     pickered: {
-        fontSize: normalFontSize,
+        fontSize: 14,
         color: '#8c8c8c',
         paddingRight:10
     },
@@ -86,7 +80,7 @@ export const rowStyle=StyleSheet.create({
         marginLeft: 20,
         height: 45,
         justifyContent: 'space-between',
-        borderBottomColor: '#ccc',
+        borderBottomColor:'#EEE9E9',
         borderBottomWidth:screen.onePixel,
         margin:2
     },
@@ -95,8 +89,7 @@ export const rowStyle=StyleSheet.create({
         textAlign: 'center'
     },
     itemTip: {
-        paddingLeft: 10,
-        fontSize:normalFontSize
+        paddingLeft: 10
     },
     myItemLeft: {
         flexDirection: 'row',

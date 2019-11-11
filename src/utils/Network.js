@@ -101,7 +101,6 @@ export default class Network extends PureComponent {
             headers:headers,
             body: JSON.stringify(data)
         };
-
         if (networkIsOk()) {
             fetch(url, fetchOptions)
                 .then(res => res.json())

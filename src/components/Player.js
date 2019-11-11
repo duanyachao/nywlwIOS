@@ -15,7 +15,6 @@ export default class Player extends Component {
   }
   render() {
     const {url}=this.props;
-    // console.info(url)
     return (
       <View style={styles.container}>
         <Video

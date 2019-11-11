@@ -13,14 +13,12 @@ import {
     StyleSheet
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import IconFont from 'react-native-vector-icons/IconFont'
 import { screen, theme } from '../../common';
 import { rowStyle } from '../../common/theme';
 import { Header, Button } from '../../components';
 import { Network, toastShort } from '../../utils';
 import api from '../../api';
 import { NavigationActions } from 'react-navigation';
-import JPushModule from 'jpush-react-native';
 // create a component
 class MineScene extends Component {
     constructor(props) {
@@ -30,7 +28,6 @@ class MineScene extends Component {
         }
     }
     getUserInfo() {
-        const {state} = this.props.navigation;
         let headers = {
             'X-Token': token
         };
@@ -59,10 +56,11 @@ class MineScene extends Component {
             [
                 {
                     text: '确定', onPress: () => {
-                        global.token = null;
-                        global.userId = null;
+                        // global.token = null;
+                        // global.userId = null;
+                        // global.weatherStationOrgId=null;
                         storage.remove({
-                            key: 'loginInfo'
+                            key: 'loginInfo',
                         })
                             .then(
                             InteractionManager.runAfterInteractions(() => {
@@ -73,11 +71,7 @@ class MineScene extends Component {
                                     ]
                                 })
                                 this.props.navigation.dispatch(resetAction);
-                                JPushModule.deleteAlias((result)=> {
-                                    // Alert.alert(JSON.stringify(result))
-                                })
                             })
-                            
                             );
 
                     }
@@ -87,10 +81,11 @@ class MineScene extends Component {
 
     }
     render() {
+        // console.info(this.state.userInfo)
         return (
             <View style={styles.container}>
                 <View style={[styles.userWrapper, styles.marginBottom]}>
-                    <Image style={styles.touxPic} resizeMode='contain' source={require('../../imgs/userCenter/user.png')}></Image>
+                    <Image style={styles.touxPic} source={require('./../../imgs/userCenter/user.png')}></Image>
                     <TouchableOpacity
                         activeOpacity={.6}
                         onPress={() => this.props.navigation.navigate('UserInfo',
@@ -101,10 +96,12 @@ class MineScene extends Component {
                         }>
                         <View style={styles.userRightText}>
                             <Text style={styles.trueNameText}>{(this.state.userInfo) ? this.state.userInfo.realName : ''}</Text>
+
                             <View style={styles.info}>
                                 <Text style={styles.infoTip}>个人信息</Text>
-                                <Icon style={styles.arrowIcon} name='angle-right' size={theme.pcikerRightIconSize} color="#fff"></Icon>
+                                <Icon style={styles.arrowIcon} name='angle-right' size={18} color="#fff"></Icon>
                             </View>
+
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -112,12 +109,12 @@ class MineScene extends Component {
                     <TouchableOpacity onPress={() => /*this.props.navigation.navigate('Msg', { title: '我的信息' })*/{}}>
                         <View style={rowStyle.myItem}>
                             <View style={rowStyle.myItemLeft}>
-                                <Icon name='comment-o' size={theme.iconSize} color={theme.theme}></Icon>
+                                <Icon style={rowStyle.tipIcon} name='comment-o' size={18} color={theme.theme}></Icon>
                                 <Text style={rowStyle.itemTip}>我的消息</Text>
                             </View>
                             <View style={rowStyle.myItemRight}>
                                 <Text style={rowStyle.itemTip}></Text>
-                                <Icon style={rowStyle.arrowIcon} name='angle-right' size={theme.iconSize} color="#ccc"></Icon>
+                                <Icon style={rowStyle.arrowIcon} name='angle-right' size={18} color="#ccc"></Icon>
 
                             </View>
                         </View>
@@ -125,12 +122,12 @@ class MineScene extends Component {
                     <TouchableOpacity onPress={() => /*this.props.navigation.navigate('Myprofit', { title: '我的收益' })*/{}}>
                         <View style={[rowStyle.myItem, rowStyle.noBorerBottom]}>
                             <View style={rowStyle.myItemLeft}>
-                                <IconFont name='shouyi' size={theme.pcikerTipIconSize} color={theme.theme}></IconFont>
+                                <Icon style={rowStyle.tipIcon} name='rmb' size={18} color={theme.theme}></Icon>
                                 <Text style={rowStyle.itemTip}>我的收益</Text>
                             </View>
                             <View style={rowStyle.myItemRight}>
                                 <Text style={rowStyle.itemTip}></Text>
-                                <Icon style={rowStyle.arrowIcon} name='angle-right' size={theme.iconSize} color="#ccc"></Icon>
+                                <Icon style={rowStyle.arrowIcon} name='angle-right' size={18} color="#ccc"></Icon>
                             </View>
                         </View>
                     </TouchableOpacity>
@@ -139,54 +136,57 @@ class MineScene extends Component {
                     <TouchableOpacity onPress={() => this.props.navigation.navigate('ModifyPassword', { title: '修改密码' })}>
                         <View style={rowStyle.myItem}>
                             <View style={rowStyle.myItemLeft}>
-                                <Icon name='key' size={theme.iconSize} color={theme.theme}></Icon>
+                                <Icon style={rowStyle.tipIcon} name='key' size={18} color={theme.theme}></Icon>
                                 <Text style={rowStyle.itemTip}>修改密码</Text>
                             </View>
                             <View style={rowStyle.myItemRight}>
                                 <Text style={rowStyle.itemTip}></Text>
-                                <Icon style={rowStyle.arrowIcon} name='angle-right' size={theme.iconSize} color="#ccc"></Icon>
+                                <Icon style={rowStyle.arrowIcon} name='angle-right' size={18} color="#ccc"></Icon>
                             </View>
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => {
-                        var url = 'tel:4000013876';
+                        var url = 'tel:4000832531';
                         Linking.canOpenURL(url).then(supported => {
                             if (supported) {
                                 Linking.openURL(url);
                             } else {
-                                console.log('无法打开该URI: ' + url);
+                                // console.log('无法打开该URI: ' + url);
                             }
                         })
                     }}>
                         <View style={rowStyle.myItem}>
                             <View style={rowStyle.myItemLeft}>
-                                <Icon name='phone' size={theme.iconSize} color={theme.theme}></Icon>
+                                <Icon style={rowStyle.tipIcon} name='phone' size={18} color={theme.theme}></Icon>
                                 <Text style={rowStyle.itemTip}>联系客服</Text>
                             </View>
                             <View style={rowStyle.myItemRight}>
                                 <Text style={rowStyle.itemTip}></Text>
-                                <Text style={{ color: '#c0c0c0', paddingRight: 10,fontSize:theme.normalFontSize}}>400-001-3876</Text>
-                                <Icon style={rowStyle.arrowIcon} name='angle-right' size={theme.pcikerTipIconSize} color="#ccc"></Icon>
+                                <Text style={{ color: '#c0c0c0', paddingRight: 10 }}>400-083-2531</Text>
+                                <Icon style={rowStyle.arrowIcon} name='angle-right' size={18} color="#ccc"></Icon>
                             </View>
                         </View>
                     </TouchableOpacity>
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('DevicesConfg', { title: '我的设置' })}>
                     <View style={[rowStyle.myItem, rowStyle.noBorerBottom]}>
                         <View style={rowStyle.myItemLeft}>
-                            <Icon  name='cog' size={theme.iconSize} color={theme.theme}></Icon>
-                            <Text style={rowStyle.itemTip}>系统设置</Text>
+                            <Icon style={rowStyle.tipIcon} name='cog' size={18} color={theme.theme}></Icon>
+                            <Text style={rowStyle.itemTip}>我的设置</Text>
                         </View>
                         <View style={rowStyle.myItemRight}>
                             <Text style={rowStyle.itemTip}></Text>
-                            <Icon style={rowStyle.arrowIcon} name='angle-right' size={theme.iconSize} color="#ccc"></Icon>
+                            <Icon style={rowStyle.arrowIcon} name='angle-right' size={18} color="#ccc"></Icon>
                         </View>
+                    
                     </View>
+                    </TouchableOpacity>
                 </View>
                 <View style={styles.btnWrapper}>
                     <Button
                         btnStyle={styles.loginOutBtn}
                         btnTextStyle={styles.btnTip}
                         onPress={() => this.loginOut()}
-                        title='退出账户'>
+                        title='退出'>
                     </Button>
                 </View>
             </View>
@@ -211,23 +211,20 @@ const styles = StyleSheet.create({
         paddingVertical: 20
     },
     touxPic: {
-        width: theme.userImgSize,
-        height:theme.userImgSize,
+        width: 48,
+        height: 48
     },
     userRightText: {
         paddingLeft: 12
     },
     trueNameText: {
-        fontSize:theme.normalFontSize,
-        color: '#fff',
-        paddingBottom:4
+        color: '#fff'
     },
     info: {
         flexDirection: 'row',
         alignItems: 'center'
     },
     infoTip: {
-        fontSize:theme.normalFontSize,
         color: '#fff',
         paddingRight: 8
     },
@@ -243,7 +240,6 @@ const styles = StyleSheet.create({
         backgroundColor: theme.theme
     },
     btnTip: {
-        fontSize:theme.normalFontSize,
         textAlign: 'center',
         color: '#fff'
     }

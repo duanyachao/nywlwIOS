@@ -8,7 +8,7 @@
 
 
 import React, { Component } from 'react';
-import { View, StyleSheet, TouchableWithoutFeedback } from 'react-native';
+import { View, StyleSheet, TouchableWithoutFeedback,ViewPropTypes } from 'react-native';
 import assign from 'object-assign';
 
 class PageControl extends Component {
@@ -20,8 +20,8 @@ class PageControl extends Component {
         pageIndicatorTintColor: React.PropTypes.string,
         currentPageIndicatorTintColor: React.PropTypes.string,
         indicatorSize: React.PropTypes.object,
-        indicatorStyle: View.propTypes.style,
-        currentIndicatorStyle: View.propTypes.style,
+        indicatorStyle: ViewPropTypes.style,
+        currentIndicatorStyle: ViewPropTypes.style,
         onPageIndicatorPress: React.PropTypes.func
     }
 

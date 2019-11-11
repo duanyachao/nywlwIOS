@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Spinner from 'react-native-loading-spinner-overlay';
-import { screen, system,theme } from '../../common';
+import { screen, system } from '../../common';
 import { Button } from '../../components';
 import api from '../../api';
 import { Network, toastShort } from '../../utils';
@@ -24,19 +24,19 @@ export default class LoginScene extends Component {
         super(props);
         this.state = {
             visible: false,
-            token: null,
+            // token: null,
             loginName: null,
             passWord: null,
             phoneNum: null,
-            userId: null
+            // userId: null
         }
     }
     static navigationOptions = ({
         header: null
     })
     goRootScene() {
-        global.userId = this.state.userId;
-        global.token = this.state.token;
+        // global.userId = this.state.userId;
+        // global.token = this.state.token;
         InteractionManager.runAfterInteractions(() => {
             const resetAction = NavigationActions.reset({
                 index: 0,
@@ -86,33 +86,69 @@ export default class LoginScene extends Component {
         let params = { 'loginName': this.state.loginName, 'password': this.state.passWord, 'phoneNum': this.state.phoneNum };
         Network.postJson(api.HOST + api.DO_LOGIN, params, headers, (res) => {
             if (res.meta && res.meta.success) {
-                // console.info(res)
-                this.setState({
-                    token: res.data.token,
-                    userId: res.data.user.userId,
-                    loginName: this.state.loginName,
-                    passWord: this.state.passWord,
-                    phoneNum: this.state.phoneNum,
-                });
+                // console.info(res.data)
+                // this.setState({
+                //     token: res.data.token,
+                //     userId: res.data.user.userId,
+                //     loginName: this.state.loginName,
+                //     passWord: this.state.passWord,
+                //     phoneNum: this.state.phoneNum,
+                // });
                 //请求成功后将token值保存到本地后，再跳转到主界面
                 storage.save({
                     key: 'loginInfo',
                     data: {
-                        token: this.state.token,
+                        // token: res.data.token,
                         loginName: this.state.loginName,
                         passWord: this.state.passWord,
                         phoneNum: this.state.phoneNum,
-                        userId: this.state.userId
+                        // userId: this.state.userId
                     }
-                }).then(()=>{
+                })
+                global.userId = res.data.user.userId;
+                global.token = res.data.token;
+                global.weatherStationOrgId=res.data.user.orgId;
+                global.bTypeName='';
+                storage.load({
+                    key:'loginInfo'
+                }).then((ret)=>{
+                    let headers = {
+                        'X-Token': token
+                    };
+                    let params = { "userId": userId };
+                    Network.get(api.HOST + api.PROFILE, params, headers, (res) => {
+                        if (res.meta.success) {
+                            storage.save({
+                                key:'userInfo',
+                                data:res.data
+                            })
+                            bTypeName=res.data.bTypeName;
+                            // console.info(bTypeName)
+                        }
+            
+                    })
+                })
+                .catch(err => {
+                    // 如果没有找到数据且没有sync方法，
+                    // 或者有其他异常，则在catch中返回
+                    console.warn(err.message);
+                    switch (err.name) {
+                      case 'NotFoundError':
+                        // TODO;
+                        break;
+                      case 'ExpiredError':
+                        // TODO
+                        break;
+                    }
+                })
+                .then(()=>{
                     DeviceEventEmitter.emit('loginSuccess',this.state.loginName)
                     this.goRootScene()
-                }
-                );
+                });
 
             } else {
                 toastShort('登录失败，请重新尝试');
-                console.info(res)
+                // console.info(res)
             }
             this.setState({
                 visible: !this.state.visible
@@ -124,16 +160,17 @@ export default class LoginScene extends Component {
         // 读取本地数据判断用户是否已经登录,
         storage.load({
             key: 'loginInfo',
-            autoSync: true,
-            syncInBackground: true
         }).then(ret => {
-            this.setState({
-                token: ret.token,
-                loginName: ret.loginName,
-                passWord: ret.passWord,
-                phoneNum: ret.phoneNum
-            })
-            this.loginAction()
+            if (ret) {
+                this.setState({
+                    loginName: ret.loginName,
+                    passWord: ret.passWord,
+                    phoneNum: ret.phoneNum
+                })
+                this.loginAction()    
+            } else {
+                    
+            }  
         }).catch(err => {
             // console.info(err)
         })
@@ -146,7 +183,7 @@ export default class LoginScene extends Component {
                 <View style={styles.loginForm}>
                     <View style={styles.textInput}>
                         <View style={styles.iconWrapper}>
-                            <Icon name='user' size={theme.iconSize} color="#fff"></Icon>
+                            <Icon name='user' size={24} color="#fff"></Icon>
                         </View>
                         <TextInput style={styles.textStyle}
                             placeholder="账号/用户名"
@@ -159,7 +196,7 @@ export default class LoginScene extends Component {
                     </View>
                     <View style={[styles.textInput]}>
                         <View style={styles.iconWrapper}>
-                            <Icon name='lock' size={theme.iconSize} color="#fff"></Icon>
+                            <Icon name='lock' size={24} color="#fff"></Icon>
                         </View>
                         <TextInput style={styles.textStyle}
                             placeholder="密码"
@@ -173,7 +210,7 @@ export default class LoginScene extends Component {
                     </View>
                     <View style={[styles.textInput]}>
                         <View style={styles.iconWrapper}>
-                            <Icon name='mobile' size={theme.iconSize} color="#fff"></Icon>
+                            <Icon name='mobile' size={24} color="#fff"></Icon>
                         </View>
                         <TextInput style={styles.textStyle}
                             placeholder="手机号"
@@ -217,25 +254,20 @@ const styles = StyleSheet.create({
         alignItems: 'stretch',
         borderBottomWidth:screen.onePixel,
         borderBottomColor: 'rgba(255,255,255,.6)',
-        height:48
 
     },
     iconWrapper:{
         justifyContent:'center',
         width:36,
         alignItems: 'center',
-        backgroundColor:'transparent'
     },
     textStyle: {
         flex: 1,
         color: '#fff',
-        fontSize:theme.normalFontSize
 
     },
     btnTextStyle: {
         color: 'rgb(55,179,117)',
-        fontSize:theme.normalFontSize
-        
 
     },
     btnStyle: {

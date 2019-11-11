@@ -32,6 +32,7 @@ export default class WarnScene extends Component {
         };
         Network.get(api.HOST + api.REGIONS, '', headers, (res) => {
             if (res.meta.success) {
+                // console.info(res)
                 this.setState({
                     areaListData: res.data
                 })
@@ -51,7 +52,7 @@ export default class WarnScene extends Component {
     keyExtractor = (item, index) => item.id;
     componentDidMount() {
         this.requestAreaData()
-        
+    
         this.warnListener = DeviceEventEmitter.addListener('报警状态',(msg)=>{
             // console.info(msg)
             (msg.meta.success && msg.data && msg.data.status!==0)?this.setState({noWarn:false}):null 

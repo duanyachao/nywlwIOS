@@ -17,19 +17,18 @@ import {
     View,
     Text
 } from 'react-native';
+import api from './../api';
+import { Network, toastShort } from './../utils';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { theme,screen } from '../common';
+import { theme } from '../common';
 import {pickerStyle} from '../common/theme';
-import {setSpText,scaleSize} from '../common/scale';
 export default class Area extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            orgId: null,
-            orgName: null,
+            selectIndex:null,
+            selectArea:null,
             modalVisible: false,
-            selectIndex: null,
-            callbackParent:null,
             dataSource: new ListView.DataSource({
                 rowHasChanged: (row1, row2) => row1 !== row2,
             })
@@ -37,16 +36,24 @@ export default class Area extends Component {
     }
     componentDidMount() {
         const {callbackParent} = this.props;
-        this.setState({
-            dataSource: this.state.dataSource.cloneWithRows(areaList),
-        });
-        (!this.state.orgId) ? this.setState({
-            orgId: areaList[0].id,
-            orgName: areaList[0].orgName,
-            selectIndex: 0
-        }) : null;
-        callbackParent(areaList[0].id)
-  
+        let headers = {
+            'Content-Type': 'application/json',
+            'X-Token': token
+        }
+        Network.get(api.REGIONSV2, '', headers, (res) => {
+            // console.info(res)
+            if (res.meta.success) {
+                    let ret=res.data;
+                    let selectIndex=(!this.state.selectIndex)?0:this.state.selectIndex;
+                    this.setState({
+                        selectIndex:selectIndex,
+                        selectArea:ret[selectIndex],
+                        dataSource: this.state.dataSource.cloneWithRows(ret)
+                    })
+                    callbackParent(ret[selectIndex].orgId,ret[selectIndex].terminalId,ret[selectIndex].terminalSerialNum) 
+                  }
+        })
+
     }
     renderItem(rowData, sectionId, rowId) {
         return (
@@ -54,8 +61,8 @@ export default class Area extends Component {
                 <View style={styles.areaListItem} key={rowId}>
                     <Text style={styles.areaListItemText}>{rowData.orgName}</Text>
                     <View style={styles.gxIcon}>
-                        {(this.state.selectIndex==rowId) ?  <Icon name='check-circle' size={theme.iconSize} color={theme.iconColor}></Icon>:
-                        <Icon name='circle-thin' size={theme.iconSize} color={"#eee"}></Icon>
+                        {(this.state.selectIndex==rowId) ?  <Icon name='check-circle' size={18} color={theme.iconColor}></Icon>:
+                        <Icon name='circle-thin' size={18} color={"#eee"}></Icon>
                     }
                     </View>
                 </View>
@@ -65,19 +72,19 @@ export default class Area extends Component {
     selectArea(rowData, rowId) {
         const {callbackParent}=this.props;
         this.setState({
-            orgId: rowData.id,
-            orgName: rowData.orgName,
+            selectArea:rowData,
             selectIndex: rowId,
             modalVisible: !this.state.modalVisible
         });
-        callbackParent(rowData.id);
-        // alert(callbackParent)    
+        callbackParent(rowData.orgId,rowData.terminalId,rowData.terminalSerialNum)   
     }
     render() {
+        let selectIndex=this.state.selectIndex;
+        let selectArea=this.state.selectArea;
         return (
             <View style={pickerStyle.container}>
                 <View style={pickerStyle.pickerTip}>
-                    <Icon name='map-signs' size={theme.pcikerTipIconSize} color={theme.iconColor}></Icon>
+                    <Icon name='map-signs' size={18} color={theme.iconColor}></Icon>
                     <Text style={pickerStyle.pickerTipText}>生产区域</Text>
                 </View>
                 {this.state.dataSource ?
@@ -85,8 +92,8 @@ export default class Area extends Component {
                         underlayColor="rgb(255, 255,255)"
                         onPress={() => this.setState({ modalVisible: !this.state.modalVisible })}>
                         <View style={pickerStyle.picker}>
-                            <Text style={pickerStyle.pickered}>{this.state.orgName}</Text>
-                            <Icon name='angle-right' size={theme.pcikerRightIconSize} color='#8c8c8c'></Icon>
+                            <Text style={pickerStyle.pickered}>{(selectArea)?selectArea.orgName:null}</Text>
+                            <Icon name='angle-right' size={24} color='#8c8c8c'></Icon>
                         </View>
                     </TouchableHighlight>
                     : <View></View>
@@ -140,7 +147,7 @@ const styles = StyleSheet.create({
         height: 44,
         borderBottomColor: '#efefef',
         alignItems: 'center',
-        borderBottomWidth:screen.onePixel,
+        borderBottomWidth: 1,
         paddingLeft: 18
 
     },
@@ -149,7 +156,7 @@ const styles = StyleSheet.create({
         paddingRight: 14
     },
     areaListItemText: {
-        fontSize:theme.normalFontSize,
+        fontSize: 18,
         color: '#000'
     }
 });

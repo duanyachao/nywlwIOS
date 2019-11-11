@@ -9,7 +9,8 @@ class VideoScene extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            orgId: null
+            orgId: null,
+            videoLists:null
         }
     }
     areaChange(newState) {
@@ -20,9 +21,7 @@ class VideoScene extends Component {
     shouldComponentUpdate(nextProps, nextState) {
         if (nextState.orgId !== this.state.orgId) {
             this.requestVideoData(nextState.orgId);
-            // console.info(nextState.orgId)
         }
-
         return true
     }
     requestVideoData(orgId) {
@@ -31,8 +30,8 @@ class VideoScene extends Component {
         };
         let params = { "orgId": orgId };
         Network.get(api.HOST + api.VIDEOLISTS, params, headers, (res) => {
+            // console.info(res)
             if (res.meta.success) {
-                // console.info(res.data)
                 this.setState({
                     videoLists: res.data
                 })

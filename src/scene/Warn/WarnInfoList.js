@@ -13,6 +13,8 @@ import { Network, toastShort } from '../../utils';
 import api from '../../api';
 import { ParamsIcon } from '../../common/Normal';
 import { theme, screen } from '../../common';
+import {setSpText,scaleSize} from '../../common/scale'
+
 // create a component
 export default class WarnInfoList extends Component {
     constructor(props) {
@@ -123,20 +125,15 @@ export default class WarnInfoList extends Component {
         }
         return (
             <View key={i} style={styles.warnItem}>
-                <Icon name='exclamation-circle' size={theme.iconSize} color={warnColor}></Icon>
+                <Icon name='exclamation-circle' size={24} color={warnColor}></Icon>
                 <View style={styles.warnName}>
-                    <Text style={styles.warnText}>{item.codename}</Text>
-                    <Text style={styles.warnText}>{item.createTime}</Text>
+                    <Text>{item.codename}</Text>
+                    <Text>{item.createTime}</Text>
                 </View>
                 <View style={styles.block}><Text></Text></View>
-                <Image source={paramsIcon} resizeMode='contain' style={styles.paramsIcon}></Image>
-                <View style={styles.warnValue}><Text style={styles.warnText}>{item.value}</Text></View>
-                <View style={[styles.warnLevel, { borderTopColor: warnColor, borderRightColor: warnColor }]}>
-                    <View style={styles.warnLevelTextWrapper}>
-                        <Text style={styles.warnLevelText}>{warnLevel}</Text>
-                    </View>
-                    
-                </View>
+                <Image source={paramsIcon} style={styles.paramsIcon}></Image>
+                <View style={styles.warnValue}><Text>{item.value}</Text></View>
+                <View style={[styles.warnLevel, { borderTopColor: warnColor, borderRightColor: warnColor }]}><Text style={styles.warnLevelText}>{warnLevel}</Text></View>
             </View>
         )
     }
@@ -147,7 +144,7 @@ export default class WarnInfoList extends Component {
             if (warnInfo.status == 2) {
                 return (<View style={styles.warnList}>
                         <View style={styles.warnAreaTitle}>
-                            <Icon name='map-marker' size={theme.iconSize} color={theme.iconColor}></Icon>
+                            <Icon name='map-marker' size={24} color={theme.iconColor}></Icon>
                             <Text style={styles.warnAreaTitleText}>{areaData.orgName}</Text>
                         </View>
                         <View style={styles.nodata}><Text>{warnInfo.result}</Text></View>
@@ -156,7 +153,7 @@ export default class WarnInfoList extends Component {
                 return (
                     <View style={styles.warnList}>
                         <View style={styles.warnAreaTitle}>
-                            <Icon name='map-marker' size={theme.iconSize} color={theme.iconColor}></Icon>
+                            <Icon name='map-marker' size={24} color={theme.iconColor}></Icon>
                             <Text style={styles.warnAreaTitleText}>{areaData.orgName}</Text>
                         </View>
                         {warnInfo.result.map((item, i) => this.renderItem(item, i))}
@@ -177,7 +174,7 @@ const styles = StyleSheet.create({
     warnItem: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingLeft: 8,
+        padding: 8,
         backgroundColor: '#fff',
         borderBottomWidth: 5,
         borderBottomColor: theme.background
@@ -189,16 +186,12 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     warnAreaTitleText: {
-        paddingLeft: 8,
-        fontSize:theme.normalFontSize
+        paddingLeft: 10,
 
     },
-    paramsIcon: { width: theme.warnImgSize, height: theme.warnImgSize, marginLeft: 10 },
-    warnName: { paddingLeft: 12, paddingRight: 10 },
-    warnValue: { paddingLeft: 12, flex: 1 },
-    warnText:{
-        fontSize:theme.warnFontSize
-    },
+    paramsIcon: { width: 24, height:24, marginLeft: 10 },
+    warnName: { paddingHorizontal:10},
+    warnValue: { paddingLeft:10 },
     nodata: {
         padding: 10,
         alignItems: 'center',
@@ -206,25 +199,23 @@ const styles = StyleSheet.create({
 
     },
     block: {
-        // height:40,
         alignSelf: 'stretch',
-        marginVertical: 4,
-        width:1,
+        marginVertical: 2,
+        width: screen.onePixel,
         backgroundColor: '#ccc'
     },
     warnLevel: {
-        width: 0,
+        position: 'absolute',
+        right:0,
+        top:0,
         borderWidth: 25,
         borderLeftColor: '#fff',
         borderBottomColor: '#fff',
     },
-    warnLevelTextWrapper:{
-        backgroundColor:'transparent'
-    },
     warnLevelText: {
-        fontSize:theme.warnLevelFontSize,
         position: 'absolute',
         color: '#fff',
+        // fontSize: 12,
         transform: [{ translateY: -15 }, { rotate: '45deg' }]
     }
 });

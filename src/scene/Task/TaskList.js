@@ -55,7 +55,7 @@ export default class TaskList extends Component {
     renderHeader() {
         return (
             <View style={styles.taskTitle}>
-                <Icon name='bars' size={theme.iconSize} color={theme.iconColor}></Icon>
+                <Icon name='bars' size={24} color={theme.iconColor}></Icon>
                 <Text style={styles.taskTitleText}>任务列表</Text>
             </View>
         )
@@ -90,7 +90,6 @@ const styles = StyleSheet.create({
     },
     taskTitleText: {
         paddingLeft: 10,
-        fontSize:theme.normalFontSize
 
     },
     

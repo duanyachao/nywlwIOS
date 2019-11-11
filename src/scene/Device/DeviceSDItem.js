@@ -11,7 +11,7 @@ import{
 import api from '../../api';
 import { Network, toastShort } from '../../utils';
 import{DeviceIcon} from '../../common/Normal';
-import { theme,screen } from '../../common';
+import Spinner from 'react-native-loading-spinner-overlay';
 const styles=StyleSheet.create({
     itemStyle:{
         height:46,
@@ -19,23 +19,21 @@ const styles=StyleSheet.create({
         justifyContent:'space-between',
         alignItems:'center',
         borderBottomColor:'#dcdcdc',
-        borderBottomWidth:screen.onePixel,
+        borderBottomWidth:1,
         backgroundColor:'#fff'
     },
     deviceName:{
         flexDirection:'row',
         justifyContent:'center',
         alignItems:'center',
-        paddingLeft:10,
-
+        paddingLeft:10,    
     },
     deviceIcon:{
-        width:theme.deviceImgSize,
-        height:theme.deviceImgSize,
+        width:32,
+        height:32,
         
     },
     deviceNameText:{
-        fontSize:theme.normalFontSize,
         paddingLeft:10,
     },
     deviceStatus:{
@@ -44,14 +42,14 @@ const styles=StyleSheet.create({
         paddingRight:10,    
     },
     deviceStatusText:{
-        paddingRight:10,
-        fontSize:theme.normalFontSize,    
+        paddingRight:10,    
     }
 })
 export default class DeviceItem extends Component{
     constructor(props){
         super(props);
         this.state={
+            visible: false,
             SwitchIsOn:false,
             statusText:null  
         }
@@ -83,6 +81,7 @@ export default class DeviceItem extends Component{
     }
     componentDidMount(){
         const {rowData}=this.props;
+        // console.info(JSON.stringify(rowData))
         let status=rowData.VALUE;
         this.changeStatus(status);    
         
@@ -90,7 +89,6 @@ export default class DeviceItem extends Component{
     componentWillReceiveProps(nextProps){
         if(nextProps.rowData!==this.props.rowData){
             let status=nextProps.rowData.VALUE;
-            // console.info(status)
             this.changeStatus(status); 
         }
         return true
@@ -113,6 +111,9 @@ export default class DeviceItem extends Component{
             '确定将'+rowData.DEVICE_NAME+statusText+'?',
             [
               {text: '确定', onPress: () =>{
+                this.setState({
+                    visible: !this.state.visible
+                })
                     let headers={
                         'X-Token':token,
                         'Content-Type':'application/json'
@@ -126,9 +127,13 @@ export default class DeviceItem extends Component{
                             SwitchIsOn:!this.state.SwitchIsOn,
                             statusText:statusText
                         });
+                        toastShort('操作成功');
                     }else{
                         toastShort(res.meta.message);
                     }
+                    this.setState({
+                        visible: !this.state.visible
+                    });
                 })
               }},
              {text:'取消',onPress:()=>{
@@ -190,8 +195,9 @@ export default class DeviceItem extends Component{
         return(
             <TouchableHighlight underlayColor="rgb(255, 255,255)" onPress={() =>this.deviceOperate(rowData,this.state.SwitchIsOn,orgId,token)}>
             <View key={rowID} style={styles.itemStyle}>
+                <Spinner visible={this.state.visible} textContent={"操作中..."} textStyle={{ color: '#FFF', fontSize: 16 }}></Spinner>
                 <View style={styles.deviceName}>
-                     <Image source={this.state.SwitchIsOn?onIcon:offIcon} resizeMode='contain' style={styles.deviceIcon}></Image>
+                     <Image source={this.state.SwitchIsOn?onIcon:offIcon} style={styles.deviceIcon}></Image>
                     <Text style={styles.deviceNameText}>{rowData.DEVICE_NAME}</Text>    
                 </View>
                 <View style={styles.deviceStatus}>

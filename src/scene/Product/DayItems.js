@@ -98,9 +98,9 @@ export default class dayItems extends Component {
                 {(data) ?
                     <View style={styles.content}>
                         <View style={styles.lrfsTip}>
-                            <View style={{ flexDirection: 'row',alignItems:'center' }}>
-                                <Text style={{fontSize:theme.normalFontSize}}>录入方式:</Text>
-                                <Text style={{ color: 'green', paddingLeft: 6,fontSize:theme.normalFontSize}}>{this.state.editText}</Text>
+                            <View style={{ flexDirection: 'row' }}>
+                                <Text>录入方式:</Text>
+                                <Text style={{ color: 'green', paddingLeft: 6 }}>{this.state.editText}</Text>
                             </View>
 
                             <View style={styles.lrfsTipBtns}>
@@ -192,9 +192,9 @@ export default class dayItems extends Component {
                                         onChangeText={(text) => this.setState({ feedRate: text })}>
                                     </TextInput> : null}
                             </View>
-                            <View style={[styles.dayItem, {alignItems:(this.state.editable)?'flex-start':'center'}]}>
-                                <Text style={[styles.remarkTip,{paddingTop:(this.state.editable)?6:0}]}>用药情况:</Text>
-                                <View style={{ flex: 1 ,paddingLeft:6}}>
+                            <View style={[styles.dayItem, styles.dayItemRemark]}>
+                                <Text style={[styles.dayItemLeftTip, styles.remarkTip]}>用药情况:</Text>
+                                <View style={{ flex: 1 }}>
                                     {(this.state.editable) ?
                                         <TextInput
                                             underlineColorAndroid="transparent"
@@ -244,8 +244,7 @@ const styles = StyleSheet.create({
     lrfsTip: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingVertical: 6,
-        paddingHorizontal:10,
+        padding: 6,
         alignItems: 'center',
         borderBottomColor: '#f0f0f0',
         borderBottomWidth: screen.onePixel,
@@ -267,7 +266,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'red'
     },
     btnTextStyle: {
-        fontSize:theme.normalFontSize,
         color: '#fff'
     },
     addBtnStyle: {
@@ -276,7 +274,6 @@ const styles = StyleSheet.create({
     dayItem: {
         height: 45,
         flexDirection: 'row',
-        justifyContent: 'space-between',
         alignItems: 'center',
         paddingHorizontal: 10,
         borderBottomColor: '#f0f0f0',
@@ -284,35 +281,31 @@ const styles = StyleSheet.create({
 
     },
     dayItemLeftTip: {
-        fontSize:theme.normalFontSize,
-        flex:1,
+        width: 90,
+        textAlign: 'justify'
     },
     dayItemText: {
-        flex:1,
+        width: 120,
+        textAlign: 'center'
     },
     textInput: {
-        flex:1,
+        position: 'absolute',
+        width: 100,
+        right: 10,
         alignItems: 'center',
         backgroundColor: '#eee',
-        marginVertical:6,
-        paddingLeft:16,
-        fontSize:theme.normalFontSize
+        padding: 0,
+        paddingLeft: 6
     },
-    // dayItemRemark: {
-    //     alignItems:'flex-start'
-    // },
+    dayItemRemark: {
+        height: 60,
+    },
     remarkTip: {
-        fontSize:theme.normalFontSize
     },
     remarkText: {
-        fontSize:theme.normalFontSize
     },
     remarkTextInput: {
-        flex:1,
         backgroundColor: '#eee',
-        alignItems:'stretch',
-        marginVertical:4,
-        fontSize:theme.normalFontSize
     },
     saveBtnGroup: {
         padding: 8,
@@ -321,14 +314,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     updateBtnStyle: {
-        backgroundColor: 'blue',
-        
+        backgroundColor: 'blue'
     },
     cancelBtnStyle: {
         backgroundColor: 'green'
     },
     saveBtnTextStyle: {
-        color: '#fff',
-        fontSize:theme.normalFontSize
+        color: '#fff'
     },
 });

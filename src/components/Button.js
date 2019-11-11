@@ -1,6 +1,6 @@
 //import liraries
 import React, { Component,PropTypes } from 'react';
-import { View, Text, StyleSheet,TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet,TouchableOpacity,ViewPropTypes } from 'react-native';
 
 // create a component
 export default class Button extends Component {
@@ -8,7 +8,7 @@ export default class Button extends Component {
         onPress:PropTypes.func,
         disabled:PropTypes.bool,
         btnTextStyle:Text.propTypes.style,
-        btnStyle:View.propTypes.style,
+        btnStyle:ViewPropTypes.style,
         title:PropTypes.string,
         activeOpacity:PropTypes.number
     }

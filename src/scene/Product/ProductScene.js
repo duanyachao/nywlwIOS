@@ -59,6 +59,7 @@ export default class ProductScene extends Component {
         };
         let params = { "biologyInId": biologyInId, "dayAge": dayAge };
         Network.postJson(api.HOST + api.DAYINFO, params, headers, (res) => {
+            // console.info(res)
             if (res.meta.success && res.data.length>0) {
                 let result=res.data;
                 let len=result.length;
@@ -95,7 +96,7 @@ export default class ProductScene extends Component {
                 </Batch>
                 {(this.state.currentDayTotalData)?<ProductTotal totalData={this.state.currentDayTotalData}></ProductTotal>:null}
                 <View style={styles.sjlrTit}>
-                    <Icon name='pencil' size={theme.iconSize} color={theme.iconColor}></Icon>
+                    <Icon name='pencil' size={18} color={theme.iconColor}></Icon>
                     <Text style={styles.sjlrText}>数据录入</Text>
                 </View>
                 <Dayage
@@ -126,7 +127,7 @@ const styles = StyleSheet.create({
     },
     sjlrText: {
         paddingLeft: 10,
-        fontSize:theme.normalFontSize,
+        fontSize: 14,
         color: '#222'
     },
    

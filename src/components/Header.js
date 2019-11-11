@@ -12,63 +12,90 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { screen, theme } from '../common';
-import {setSpText,scaleSize} from '../common/scale';
 const styles = StyleSheet.create({
     topBar: {
         flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        marginTop:20,
-        height:theme.headerH,
+        height: 45,
         backgroundColor: theme.theme
     },
     msgIcon: {
 
     },
     topBarLeft: {
-        width: 48
+        justifyContent:'center',
+        alignItems:'center',
+        width: 50
     },
     topBarCenter: {
         flexDirection: 'row',
-        justifyContent: 'center'
+        flex:1,
+        justifyContent: 'center',
+        alignItems:'center'
     },
     topBarCenterTitle: {
+        fontSize: 15,
         color: '#fff',
     },
     topBarRight: {
-        width: 32,
+        width: 50,
         alignItems: 'center',
-        marginRight: 6
-    }
+        justifyContent:'center'
+    },
 });
 export default class Header extends Component {
     constructor(props) {
         super(props);
     }
     msgButtonAction() {
-        const {navigation} = this.props;
+        // const {navigation} = this.props;
         // console.info(navigation)
-        InteractionManager.runAfterInteractions(() => {
-            navigation.navigate('Msg', { title: '我的消息' })
-        })
+        // InteractionManager.runAfterInteractions(() => {
+        //     navigation.navigate('Msg', { title: '我的消息' })
+        // })
     }
     componentDidMount() {
 
     }
     componentWillUnmount(){
-        this.pushListener && this.pushListener.remove()    
+        // this.pushListener && this.pushListener.remove()    
     }
+
     render() {
+        const{rightBtn,leftBtn,navigation}=this.props;
+        // console.info(navigation)
         return (
             <View>
                 <View style={styles.topBar}>
-                    <View style={styles.topBarLeft}></View>
+                    <View style={styles.topBarLeft}>
+                        {(leftBtn)?
+                            <Icon.Button
+                            borderRadius={0}
+                            name="angle-left"
+                            backgroundColor="transparent"
+                            size={30}
+                            color='#FFF'
+                            activeOpacity={.2}
+                            underlayColor={'transparent'}
+                            onPress={() => navigation.goBack()}
+                            />:null}
+                    </View>
                     <View style={styles.topBarCenter}>
                         <Text style={styles.topBarCenterTitle}>{this.props.title}</Text>
                     </View>
-                    <TouchableOpacity style={styles.topBarRight} onPress={() => /*this.msgButtonAction()*/{}}>
-                        <Icon style={styles.icon} name='commenting' size={18} color="#fff"></Icon>
-                    </TouchableOpacity>
+                    <View style={styles.topBarRight}>
+                    {(rightBtn)?
+                        <Icon.Button
+                            borderRadius={0}
+                            name="commenting"
+                            backgroundColor="transparent"
+                            size={20}
+                            color='#FFF'
+                            activeOpacity={.2}
+                            underlayColor={'transparent'}
+                            onPress={() => {}}
+                            />:null}
+                    </View>
+                    
                 </View>
             </View>
         );
