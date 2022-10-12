@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "react": "16.0.0-alpha.6",
-    "react-native": "0.44.3",
+    "react-native": "0.70.2",
     "react-native-loading-spinner-overlay": "^0.5.0",
     "react-native-modal-datetime-picker": "^7.6.0",
     "react-native-modalbox": "^1.4.2",
